@@ -8,4 +8,14 @@
     tools:context=".pillbox.PillboxActivity"
     tools:showIn="@layout/activity_pillbox">
 
+    <ListView
+        android:id="@+id/list_of_pills"
+        android:layout_width="match_parent"
+        android:layout_height="476dp"
+        android:layout_above="@id/fab"
+        android:layout_marginTop="20dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="16dp"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>
