@@ -23,6 +23,8 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.fiuba.proyectosinformaticos.oupa.pillbox.PillboxActivity;
+
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity
@@ -57,6 +59,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void attachShortcuts() {
+
         ImageButton btnCamera = (ImageButton) findViewById(R.id.btn_camera);
         btnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +81,19 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+
+
+        ImageButton btnPill = (ImageButton) findViewById(R.id.btn_pill);
+        btnPill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent pillboxIntent = new Intent(MainActivity.this, PillboxActivity.class);
+                MainActivity.this.startActivity(pillboxIntent);
+            }
+        });
     }
+
+
 
     @Override
     public void onBackPressed() {
