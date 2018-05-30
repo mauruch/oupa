@@ -58,7 +58,7 @@ public class SOSActivity extends AppCompatActivity {
                 redirectButton.setVisibility(View.VISIBLE);
 
                 //send alert against server.
-                alertService.sendSOSAlert();
+                //alertService.sendSOSAlert();
             }
         };
     }

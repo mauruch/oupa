@@ -11,6 +11,6 @@ public class SOSAlertService {
     }
 
     public void sendSOSAlert() {
-        oupaApi.createSOSAlert();
+        //oupaApi.createSOSAlert();
     }
 }
