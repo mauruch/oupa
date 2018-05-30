@@ -52,14 +52,17 @@ public class PillboxActivity extends AppCompatActivity {
 
         Pill pill1 = new Pill();
         pill1.name = "Aspirina";
+        pill1.drinked = true;
         pill1.date = new Date();
 
         Pill pill2 = new Pill();
         pill2.name = "Aspirina 2";
+        pill2.drinked = true;
         pill2.date = new Date();
 
         Pill pill3 = new Pill();
         pill3.name = "Aspirina 3";
+        pill3.drinked = false;
         pill3.date = new Date();
 
         Pill pill4 = new Pill();

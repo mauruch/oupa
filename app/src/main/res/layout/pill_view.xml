@@ -25,7 +25,16 @@
         android:textSize="40sp"
         android:textStyle="normal|bold" />
 
-
+    <ImageView
+        android:id="@+id/pillImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical|end"
+        android:layout_marginEnd="18dp"
+        android:visibility="visible"
+        android:src="@drawable/pill_ok" />
 
 
 </RelativeLayout>

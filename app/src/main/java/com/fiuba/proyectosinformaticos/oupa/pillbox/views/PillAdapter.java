@@ -3,10 +3,12 @@ package com.fiuba.proyectosinformaticos.oupa.pillbox.views;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.annotation.DrawableRes;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fiuba.proyectosinformaticos.oupa.R;
@@ -34,13 +36,31 @@ public class PillAdapter extends ArrayAdapter<Pill> {
 
         TextView hourTextView = (TextView) convertView.findViewById(R.id.pillTime);
         TextView nameTextView = (TextView) convertView.findViewById(R.id.pillTitle);
+        ImageView imageView = (ImageView) convertView.findViewById(R.id.pillImage);
 
         // Populate the data into the template view using the data object
         hourTextView.setText(pill.hourString());
         nameTextView.setText(pill.name);
 
-        //TODO:segun la hora (hacerlo en el model)
-        convertView.setBackgroundColor(Color.BLUE);
+        if(pill.shouldBeDrinked() && pill.drinked){
+            convertView.setBackgroundColor(Color.parseColor("#226497b1"));
+            hourTextView.setTextColor(Color.parseColor("#6497b1"));
+            nameTextView.setTextColor(Color.parseColor("#6497b1"));
+            imageView.setImageResource(R.drawable.pill_ok);
+            imageView.setVisibility(View.VISIBLE);
+        }else if((pill.shouldBeDrinked() && !pill.drinked) || (!pill.shouldBeDrinked() && pill.drinked)){
+            convertView.setBackgroundColor(Color.parseColor("#22e50f0f"));
+            hourTextView.setTextColor(Color.parseColor("#e50f0f"));
+            nameTextView.setTextColor(Color.parseColor("#e50f0f"));
+            imageView.setImageResource(R.drawable.pill_nok);
+            imageView.setVisibility(View.VISIBLE);
+        }else{
+            convertView.setBackgroundColor(Color.parseColor("#220FB7E5"));
+            hourTextView.setTextColor(Color.parseColor("#0FB7E5"));
+            nameTextView.setTextColor(Color.parseColor("#0FB7E5"));
+            imageView.setVisibility(View.INVISIBLE);
+        }
+
 
         // Return the completed view to render on screen
         return convertView;
