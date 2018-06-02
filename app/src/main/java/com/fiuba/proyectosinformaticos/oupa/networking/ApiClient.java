@@ -1,5 +1,7 @@
 package com.fiuba.proyectosinformaticos.oupa.networking;
 
+import com.fiuba.proyectosinformaticos.oupa.UserManager;
+
 import java.io.IOException;
 
 import okhttp3.Interceptor;
@@ -24,29 +26,17 @@ public class ApiClient {
         return instance;
     }
 
-    private Retrofit buildRetrofit() {
+    private void buildRetrofit() {
 
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-
-        httpClient.addInterceptor(new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-
-                Request request = chain.request().newBuilder().addHeader("Authorization", "value").build();
-                return chain.proceed(request);
-            }
-        });
-
         Retrofit.Builder builder =
                 new Retrofit.Builder()
                         .baseUrl(API_BASE_URL)
                         .addConverterFactory(GsonConverterFactory.create());
 
-        Retrofit retrofit = builder
+        retrofit = builder
                 .client(httpClient.build())
                 .build();
-
-        return retrofit;
     }
 
     public OupaApi getOupaClient() {

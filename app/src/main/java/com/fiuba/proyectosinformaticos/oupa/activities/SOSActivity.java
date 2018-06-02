@@ -26,6 +26,8 @@ public class SOSActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        alertService = new SOSAlertService();
+
         setContentView(R.layout.activity_sos);
 
         titleText = findViewById(R.id.titleText);
@@ -58,7 +60,7 @@ public class SOSActivity extends AppCompatActivity {
                 redirectButton.setVisibility(View.VISIBLE);
 
                 //send alert against server.
-                //alertService.sendSOSAlert();
+                alertService.sendSOSAlert();
             }
         };
     }
