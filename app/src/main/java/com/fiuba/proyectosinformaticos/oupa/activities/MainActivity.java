@@ -1,11 +1,7 @@
 package com.fiuba.proyectosinformaticos.oupa.activities;
 
-import android.content.ContentUris;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.CalendarContract;
-import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -17,14 +13,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.fiuba.proyectosinformaticos.oupa.R;
+import com.fiuba.proyectosinformaticos.oupa.UserManager;
 import com.google.firebase.iid.FirebaseInstanceId;
-
-import java.util.Calendar;
-
-import static android.content.ContentValues.TAG;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -32,6 +24,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //create session for a default user
+        UserManager.getInstance().logUser();
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
