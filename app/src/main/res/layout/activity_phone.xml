@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.PhoneActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="10"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/titleText"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textSize="35sp"
+            android:text="Agenda"/>
+
+
+        <ImageButton
+            android:id="@+id/contact1Button"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/contact1"
+            android:textColor="@color/white"
+            android:layout_weight="2"
+            android:textSize="30sp"
+            />
+
+        <ImageButton
+            android:id="@+id/contact2Button"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/contact2"
+            android:textColor="@color/white"
+            android:layout_weight="2"
+            android:textSize="30sp"
+            />
+
+        <ImageButton
+            android:id="@+id/contact3Button"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/contact3"
+            android:textColor="@color/white"
+            android:layout_weight="2"
+            android:textSize="30sp"
+            />
+
+        <ImageButton
+            android:id="@+id/contact4Button"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/contact4"
+            android:textColor="@color/white"
+            android:layout_weight="2"
+            android:textSize="30sp"
+            />
+
+
+        <Button
+            android:id="@+id/redirectButton"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/panic"
+            android:textColor="@color/white"
+            android:layout_weight="2"
+            android:textSize="30sp"
+            android:text="Volver"
+            />
+
+
+
+    </LinearLayout>
+
+
+
+</android.support.constraint.ConstraintLayout>
