@@ -65,13 +65,25 @@ public class MainActivity extends AppCompatActivity
                 Intent sosActivity = new Intent(getApplicationContext(), SOSActivity.class);
                 finish();
                 startActivity(sosActivity);
+            }
+        });
 
+        //ESTO ESTABA COMENTADO ABAJO
 //                Uri.Builder builder = CalendarContract.CONTENT_URI.buildUpon();
 //                builder.appendPath("time");
 //                ContentUris.appendId(builder, Calendar.getInstance().getTimeInMillis());
 //                Intent intent = new Intent(Intent.ACTION_VIEW)
 //                        .setData(builder.build());
 //                startActivity(intent);
+
+
+        ImageButton btnPhone = findViewById(R.id.btn_phone);
+        btnPhone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent phoneActivity = new Intent(getApplicationContext(), PhoneActivity.class);
+                startActivity(phoneActivity);
+
             }
         });
     }
