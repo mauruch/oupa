@@ -74,6 +74,7 @@ public class SOSActivity extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                countDownTimer.cancel();
                 Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
                 finish();
                 startActivity(mainActivity);
