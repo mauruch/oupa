@@ -5,4 +5,8 @@
     <color name="colorAccent">#FF4081</color>
     <color name="panic">#ff0004</color>
     <color name="white">#ffffff</color>
+    <color name="green">#4caf50</color>
+    <color name="lightblue">#00acc1</color>
+    <color name="brown">#5d4037</color>
+    <color name="yellow">#ffb300</color>
 </resources>
