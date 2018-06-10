@@ -6,6 +6,7 @@
 *.dex
 # Java class files
 *.class
+*.DS_Store
 
 # Google Services (e.g. APIs or Firebase)
 google-services.json
