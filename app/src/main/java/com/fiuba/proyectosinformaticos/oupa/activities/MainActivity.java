@@ -98,19 +98,6 @@ public class MainActivity extends AppCompatActivity
         });
 
 
-
-        //develop
-//        ImageButton btnPhone = findViewById(R.id.btn_phone);
-//        btnPhone.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent phoneActivity = new Intent(getApplicationContext(), PhoneActivity.class);
-//                startActivity(phoneActivity);
-//
-//            }
-//        });
-
-
     }
 
     @Override
