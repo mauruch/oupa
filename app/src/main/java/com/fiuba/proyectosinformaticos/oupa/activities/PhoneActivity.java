@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.fiuba.proyectosinformaticos.oupa.R;
@@ -18,12 +19,12 @@ public class PhoneActivity extends AppCompatActivity {
 
     private View.OnClickListener goHomeListener = goHomeListener();
     private View.OnClickListener callListener = callListener();
-    private ImageButton contacto1;
-    private ImageButton contacto2;
-    private ImageButton contacto3;
-    private ImageButton contacto4;
-    private ImageButton contacto5;
-    private ImageButton contacto6;
+    private LinearLayout contacto1;
+    private LinearLayout contacto2;
+    private LinearLayout contacto3;
+    private LinearLayout contacto4;
+    private LinearLayout contacto5;
+    private LinearLayout contacto6;
     private Button redirectButton;
     private TextView titleText;
 
@@ -34,12 +35,12 @@ public class PhoneActivity extends AppCompatActivity {
 
         titleText = findViewById(R.id.titleText);
         redirectButton = findViewById(R.id.redirectButton);
-        contacto1 = findViewById(R.id.contact1Button);
-        contacto2 = findViewById(R.id.contact2Button);
-        contacto3 = findViewById(R.id.contact3Button);
-        contacto4 = findViewById(R.id.contact4Button);
-        contacto5 = findViewById(R.id.contact5Button);
-        contacto6 = findViewById(R.id.contact6Button);
+        contacto1 = findViewById(R.id.contact1Layout);
+        contacto2 = findViewById(R.id.contact2Layout);
+        contacto3 = findViewById(R.id.contact3Layout);
+        contacto4 = findViewById(R.id.contact4Layout);
+        contacto5 = findViewById(R.id.contact5Layout);
+        contacto6 = findViewById(R.id.contact6Layout);
         attachEvents();
 
     }
