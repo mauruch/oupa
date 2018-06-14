@@ -22,6 +22,8 @@ public class PhoneActivity extends AppCompatActivity {
     private ImageButton contacto2;
     private ImageButton contacto3;
     private ImageButton contacto4;
+    private ImageButton contacto5;
+    private ImageButton contacto6;
     private Button redirectButton;
     private TextView titleText;
 
@@ -36,8 +38,8 @@ public class PhoneActivity extends AppCompatActivity {
         contacto2 = findViewById(R.id.contact2Button);
         contacto3 = findViewById(R.id.contact3Button);
         contacto4 = findViewById(R.id.contact4Button);
-
-
+        contacto5 = findViewById(R.id.contact5Button);
+        contacto6 = findViewById(R.id.contact6Button);
         attachEvents();
 
     }
@@ -81,7 +83,8 @@ public class PhoneActivity extends AppCompatActivity {
         contacto2.setOnClickListener(callListener);
         contacto3.setOnClickListener(callListener);
         contacto4.setOnClickListener(callListener);
-
+        contacto5.setOnClickListener(callListener);
+        contacto6.setOnClickListener(callListener);
     }
 
 }
