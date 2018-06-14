@@ -1,11 +1,9 @@
 package com.fiuba.proyectosinformaticos.oupa.activities;
 
-import android.content.ContentUris;
+import android.Manifest;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.CalendarContract;
-import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -17,17 +15,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
+import com.fiuba.proyectosinformaticos.oupa.services.FlashlightService;
 import com.fiuba.proyectosinformaticos.oupa.R;
 import com.google.firebase.iid.FirebaseInstanceId;
 
-import java.util.Calendar;
-
-import static android.content.ContentValues.TAG;
-
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private static final int CAMERA_REQUEST = 50;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +62,7 @@ public class MainActivity extends AppCompatActivity
         btnSos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent sosActivity = new Intent(getApplicationContext(), SOSActivity.class);
                 finish();
                 startActivity(sosActivity);
@@ -78,6 +75,21 @@ public class MainActivity extends AppCompatActivity
 //                startActivity(intent);
             }
         });
+
+        ImageButton btnFlashLight = findViewById(R.id.btn_flashlight);
+        btnFlashLight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                ActivityCompat.requestPermissions(MainActivity.this, new String[] {Manifest.permission.CAMERA}, CAMERA_REQUEST);
+
+                Intent flashLightService = new Intent(getApplicationContext(), FlashlightService.class);
+                startService(flashLightService);
+
+
+            }
+        });
+
     }
 
     @Override
