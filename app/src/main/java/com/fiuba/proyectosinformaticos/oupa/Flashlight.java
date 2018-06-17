@@ -1,14 +1,23 @@
 package com.fiuba.proyectosinformaticos.oupa;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.hardware.Camera;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.fiuba.proyectosinformaticos.oupa.activities.MainActivity;
 
 public class Flashlight {
 
     private static Camera camera;
     private boolean isFlashOn = false;
-    static Camera.Parameters params;
+    private static Camera.Parameters params;
+    private static final int CAMERA_REQUEST = 50;
+
 
     private static final Flashlight ourInstance = new Flashlight();
 
@@ -21,19 +30,34 @@ public class Flashlight {
 
     }
 
-    public void toggleFlashlight(ImageView flashlightView) {
+    public void toggleFlashlight(ImageView flashlightView, PackageManager packageManager, MainActivity mainActivity) {
 
-        if (isFlashOn) {
-            // turn off flash
-            turnOffFlash();
-            isFlashOn=false;
-            flashlightView.setImageResource(R.drawable.linterna);
+        final boolean hasCameraFlash = packageManager.
+                hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
+        boolean isEnabled = ContextCompat.checkSelfPermission(mainActivity, Manifest.permission.CAMERA)
+                == PackageManager.PERMISSION_GRANTED;
+
+        if (hasCameraFlash) {
+            if (isEnabled) {
+                if (isFlashOn) {
+                    // turn off flash
+                    turnOffFlash();
+                    isFlashOn=false;
+                    flashlightView.setImageResource(R.drawable.linterna);
+                } else {
+                    // turn on flash
+                    turnOnFlash();
+                    isFlashOn=true;
+                    flashlightView.setImageResource(R.drawable.linterna_on);
+                }
+            } else {
+                ActivityCompat.requestPermissions(mainActivity, new String[] {Manifest.permission.CAMERA}, CAMERA_REQUEST);
+            }
         } else {
-            // turn on flash
-            turnOnFlash();
-            isFlashOn=true;
-            flashlightView.setImageResource(R.drawable.linterna_on);
+            Toast.makeText(mainActivity, "Tu dispositivo no dispone de linterna",
+                    Toast.LENGTH_SHORT).show();
         }
+
     }
 
     // Get the camera
@@ -44,7 +68,7 @@ public class Flashlight {
                 params = camera.getParameters();
 
                 //WTF, si no le pongo esto no funciona a la primera!!
-                Thread.sleep(200);
+                Thread.sleep(250);
 
             } catch (RuntimeException e) {
                 Log.e("Cant open Camera", e.getMessage());

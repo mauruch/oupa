@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity
 
                 ImageView flashlightView = findViewById(R.id.flashlight_layout_image);
                 Flashlight flashlight = Flashlight.getInstance();
-                flashlight.toggleFlashlight(flashlightView);
+                flashlight.toggleFlashlight(flashlightView, getPackageManager(),MainActivity.this);
 
             }
         });
