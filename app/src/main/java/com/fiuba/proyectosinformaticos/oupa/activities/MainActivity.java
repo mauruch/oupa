@@ -13,9 +13,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.fiuba.proyectosinformaticos.oupa.Flashlight;
 import com.fiuba.proyectosinformaticos.oupa.R;
 import com.fiuba.proyectosinformaticos.oupa.UserManager;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -97,6 +99,17 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        final LinearLayout flashlightLayout = findViewById(R.id.flashlight_layout);
+        flashlightLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                ImageView flashlightView = findViewById(R.id.flashlight_layout_image);
+                Flashlight flashlight = Flashlight.getInstance();
+                flashlight.toggleFlashlight(flashlightView);
+
+            }
+        });
 
     }
 
