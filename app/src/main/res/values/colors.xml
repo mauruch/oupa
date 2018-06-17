@@ -10,5 +10,7 @@
     <color name="lightbluetransparent">#220FB7E5</color>
     <color name="redparent">#22e50f0f</color>
     <color name="bluetransparent">#226497b1</color>
+    <color name="greenMaterial">#009688</color>
+
 
 </resources>

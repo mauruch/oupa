@@ -28,6 +28,18 @@
         <activity
             android:name=".pillbox.DrinkedPillActivity"
             android:label="@string/title_activity_drinked_pill"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".pillbox.NewPillStep1"
+            android:label="@string/title_activity_new_pill_step1"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".pillbox.NewPillStep2"
+            android:label="@string/title_activity_new_pill_step2"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".pillbox.NewPillStep4"
+            android:label="@string/title_activity_new_pill_step4"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

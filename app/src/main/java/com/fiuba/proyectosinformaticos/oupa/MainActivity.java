@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.ContentUris;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.CalendarContract;
@@ -26,6 +27,7 @@ import android.widget.ImageButton;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.PillboxActivity;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -56,6 +58,15 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         attachShortcuts();
+        configLanguage();
+    }
+
+    private void configLanguage(){
+        String languageToLoad  = "es";
+        Locale locale = new Locale(languageToLoad);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
     }
 
     private void attachShortcuts() {
