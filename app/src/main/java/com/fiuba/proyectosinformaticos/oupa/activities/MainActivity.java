@@ -1,7 +1,6 @@
 package com.fiuba.proyectosinformaticos.oupa.activities;
 
 import android.content.Intent;
-import android.hardware.Camera;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -14,9 +13,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.ImageButton;
 
 import com.fiuba.proyectosinformaticos.oupa.Flashlight;
 import com.fiuba.proyectosinformaticos.oupa.R;
@@ -100,13 +99,14 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        ImageButton btnFlashLight = findViewById(R.id.btn_flashlight);
-        btnFlashLight.setOnClickListener(new View.OnClickListener() {
+        final LinearLayout flashlightLayout = findViewById(R.id.flashlight_layout);
+        flashlightLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                ImageView flashlightView = findViewById(R.id.flashlight_layout_image);
                 Flashlight flashlight = Flashlight.getInstance();
-                flashlight.toggleFlashlight();
+                flashlight.toggleFlashlight(flashlightView);
 
             }
         });

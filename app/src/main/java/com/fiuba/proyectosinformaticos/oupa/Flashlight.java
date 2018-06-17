@@ -2,6 +2,7 @@ package com.fiuba.proyectosinformaticos.oupa;
 
 import android.hardware.Camera;
 import android.util.Log;
+import android.widget.ImageView;
 
 public class Flashlight {
 
@@ -20,16 +21,18 @@ public class Flashlight {
 
     }
 
-    public void toggleFlashlight() {
+    public void toggleFlashlight(ImageView flashlightView) {
 
         if (isFlashOn) {
             // turn off flash
             turnOffFlash();
             isFlashOn=false;
+            flashlightView.setImageResource(R.drawable.linterna);
         } else {
             // turn on flash
             turnOnFlash();
             isFlashOn=true;
+            flashlightView.setImageResource(R.drawable.linterna_on);
         }
     }
 
