@@ -87,6 +87,17 @@ public class MainActivity extends AppCompatActivity
                 startActivity(sosActivity);
             }
         });
+
+        LinearLayout phoneLayout = findViewById(R.id.phone_layout);
+        phoneLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent phoneActivity = new Intent(getApplicationContext(), PhoneActivity.class);
+                startActivity(phoneActivity);
+            }
+        });
+
+
     }
 
     @Override
