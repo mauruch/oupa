@@ -6,6 +6,7 @@
 *.dex
 # Java class files
 *.class
+*.DS_Store
 
 # Google Services (e.g. APIs or Firebase)
 google-services.json
@@ -36,7 +37,9 @@ captures/
 
 # IntelliJ
 *.iml
-.idea/*
+
+.idea/
+
 # Keystore files
 # Uncomment the following line if you do not want to check your keystore files in.
 #*.jks
