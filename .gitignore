@@ -4,9 +4,12 @@
 
 # Files for the ART/Dalvik VM
 *.dex
-
 # Java class files
 *.class
+*.DS_Store
+
+# Google Services (e.g. APIs or Firebase)
+google-services.json
 
 # Generated files
 bin/
@@ -34,6 +37,7 @@ captures/
 
 # IntelliJ
 *.iml
+
 .idea/
 
 # Keystore files
@@ -42,9 +46,6 @@ captures/
 
 # External native build folder generated in Android Studio 2.2 and later
 .externalNativeBuild
-
-# Google Services (e.g. APIs or Firebase)
-google-services.json
 
 # Freeline
 freeline.py

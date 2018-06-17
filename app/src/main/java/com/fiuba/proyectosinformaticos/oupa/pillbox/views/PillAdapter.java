@@ -14,7 +14,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.fiuba.proyectosinformaticos.oupa.MainActivity;
 import com.fiuba.proyectosinformaticos.oupa.R;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.DrinkedPillActivity;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.PillboxActivity;
