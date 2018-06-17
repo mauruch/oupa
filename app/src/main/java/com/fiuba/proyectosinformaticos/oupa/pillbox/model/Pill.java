@@ -4,11 +4,12 @@ import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Pill{
+public class Pill implements Serializable{
 
     public String name;
     public String notes;
