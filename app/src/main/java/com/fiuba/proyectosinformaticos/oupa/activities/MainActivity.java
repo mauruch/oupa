@@ -2,6 +2,7 @@ package com.fiuba.proyectosinformaticos.oupa.activities;
 
 import android.Manifest;
 import android.content.Intent;
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
@@ -16,14 +17,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
 
-import com.fiuba.proyectosinformaticos.oupa.services.FlashlightService;
+import com.fiuba.proyectosinformaticos.oupa.Flashlight;
 import com.fiuba.proyectosinformaticos.oupa.R;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-    private static final int CAMERA_REQUEST = 50;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,11 +80,8 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
 
-                ActivityCompat.requestPermissions(MainActivity.this, new String[] {Manifest.permission.CAMERA}, CAMERA_REQUEST);
-
-                Intent flashLightService = new Intent(getApplicationContext(), FlashlightService.class);
-                startService(flashLightService);
-
+                Flashlight flashlight = Flashlight.getInstance();
+                flashlight.toggleFlashlight();
 
             }
         });
@@ -148,4 +144,6 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }

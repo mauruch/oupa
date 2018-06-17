@@ -1,58 +1,52 @@
-package com.fiuba.proyectosinformaticos.oupa.services;
+package com.fiuba.proyectosinformaticos.oupa;
 
-import android.app.Service;
-import android.content.Intent;
 import android.hardware.Camera;
-import android.os.IBinder;
-
 import android.util.Log;
 
+public class Flashlight {
 
-public class FlashlightService extends Service {
-    private Camera camera;
-    private boolean isFlashOn;
-    Camera.Parameters params;
+    private static Camera camera;
+    private boolean isFlashOn = false;
+    static Camera.Parameters params;
 
-    public FlashlightService() {
-        this.isFlashOn=false;
-    }
+    private static final Flashlight ourInstance = new Flashlight();
 
-    @Override
-    public void onCreate() {
+    public static Flashlight getInstance() {
         getCamera();
+        return ourInstance;
     }
 
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
+    private Flashlight() {
+
+    }
+
+    public void toggleFlashlight() {
 
         if (isFlashOn) {
             // turn off flash
             turnOffFlash();
             isFlashOn=false;
-            //stopSelf();
         } else {
             // turn on flash
             turnOnFlash();
             isFlashOn=true;
         }
-
-        return Service.START_NOT_STICKY;
-    }
-
-    @Override
-    public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
-        throw new UnsupportedOperationException("Not yet implemented");
     }
 
     // Get the camera
-    private void getCamera() {
+    private static void getCamera() {
         if (camera == null) {
             try {
                 camera = Camera.open();
                 params = camera.getParameters();
+
+                //WTF, si no le pongo esto no funciona a la primera!!
+                Thread.sleep(200);
+
             } catch (RuntimeException e) {
                 Log.e("Cant open Camera", e.getMessage());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -62,10 +56,9 @@ public class FlashlightService extends Service {
     private void turnOnFlash() {
         if (!isFlashOn) {
             if (camera == null || params == null) {
+                Log.e("Flashlight","Camera Not Found");
                 return;
             }
-            // play sound
-            //playSound();
 
             params = camera.getParameters();
             params.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
@@ -73,8 +66,6 @@ public class FlashlightService extends Service {
             camera.startPreview();
             isFlashOn = true;
 
-            // changing button/switch image
-            //toggleButtonImage();
         }
 
     }
@@ -84,10 +75,9 @@ public class FlashlightService extends Service {
     private void turnOffFlash() {
         if (isFlashOn) {
             if (camera == null || params == null) {
+                Log.e("Flashlight","Camera Not Found");
                 return;
             }
-            // play sound
-            //playSound();
 
             params = camera.getParameters();
             params.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
@@ -95,13 +85,8 @@ public class FlashlightService extends Service {
             camera.stopPreview();
             isFlashOn = false;
 
-            // changing button/switch image
-            //toggleButtonImage();
         }
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
+
 }
