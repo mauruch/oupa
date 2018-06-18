@@ -103,11 +103,8 @@ public class MainActivity extends AppCompatActivity
         flashlightLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                ImageView flashlightView = findViewById(R.id.flashlight_layout_image);
                 Flashlight flashlight = Flashlight.getInstance();
-                flashlight.toggleFlashlight(flashlightView, getPackageManager(),MainActivity.this);
-
+                flashlight.toggleFlashlight(MainActivity.this);
             }
         });
 
