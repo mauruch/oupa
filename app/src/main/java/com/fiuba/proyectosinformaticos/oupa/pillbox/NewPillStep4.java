@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.fiuba.proyectosinformaticos.oupa.R;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.model.OUPADateFormat;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.model.Pill;
+import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillService;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -21,11 +22,14 @@ public class NewPillStep4 extends AppCompatActivity {
 
     private  Pill pill;
     public static final int STEP_CODE = 400;
+    private  PillService pillService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_pill_step4);
+
+        pillService = new PillService();
 
         ImageButton closeButton = (ImageButton) findViewById(R.id.btn_close);
         closeButton.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +58,9 @@ public class NewPillStep4 extends AppCompatActivity {
         Intent intent = new Intent(NewPillStep4.this, PillboxActivity.class);
         intent.putExtra("pill", pill);
         startActivityForResult(intent,STEP_CODE);
-        finish();
+        pillService.createNewPill(pill);
+
+     //   finish();
     }
 
 
