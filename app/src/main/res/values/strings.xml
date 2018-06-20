@@ -6,4 +6,19 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_pillbox">PillboxActivity</string>
+    <string name="title_activity_drinked_pill">DrinkedPillActivity</string>
+    <string name="title_activity_new_pill_step1">NewPillStep1</string>
+    <string name="today_pills_title">Medicinas de hoy</string>
+    <string name="new_pill_title">Nueva medicina</string>
+    <string name="select_day_title">Seleccione día</string>
+    <string name="continue_button">Continuar</string>
+    <string name="confirm_button">Confirmar</string>
+    <string name="select_date">Seleccionar fecha</string>
+    <string name="select_hour">Seleccionar hora</string>
+    <string name="selected_date">Fecha y hora seleccionadas: </string>
+    <string name="add_pill_description">Se agregará pastilla</string>
+    <string name="title_activity_new_pill_step2">NewPillStep2</string>
+    <string name="title_activity_new_pill_step4">NewPillStep4</string>
+
 </resources>

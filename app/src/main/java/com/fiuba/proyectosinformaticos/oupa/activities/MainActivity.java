@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 import com.fiuba.proyectosinformaticos.oupa.Flashlight;
 import com.fiuba.proyectosinformaticos.oupa.R;
 import com.fiuba.proyectosinformaticos.oupa.UserManager;
+import com.fiuba.proyectosinformaticos.oupa.pillbox.PillboxActivity;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.text.SimpleDateFormat;
@@ -99,16 +101,28 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+
+        LinearLayout pillLayout = findViewById(R.id.pills_layout);
+        pillLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent pillboxIntent = new Intent(MainActivity.this, PillboxActivity.class);
+                MainActivity.this.startActivity(pillboxIntent);
+            }
+        });
+
         final LinearLayout flashlightLayout = findViewById(R.id.flashlight_layout);
         flashlightLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Flashlight flashlight = Flashlight.getInstance();
                 flashlight.toggleFlashlight(MainActivity.this);
+
             }
         });
 
     }
+
 
     @Override
     public void onBackPressed() {
