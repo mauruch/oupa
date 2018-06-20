@@ -52,12 +52,14 @@ public class PillService {
                     delegate.onResponseSuccess();
                 } else {
                     Log.e("PILLSERVICE", response.body().toString());
+                    delegate.onResponseError();
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 Log.e("PILLSERVICE", t.getMessage());
+                delegate.onResponseError();
             }
         });
     }

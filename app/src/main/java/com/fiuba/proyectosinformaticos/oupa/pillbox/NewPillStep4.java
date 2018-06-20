@@ -8,7 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fiuba.proyectosinformaticos.oupa.R;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.model.OUPADateFormat;
@@ -55,14 +57,26 @@ public class NewPillStep4 extends AppCompatActivity {
     }
 
     public void confirmButtonPressed(View view) {
+        ProgressBar loadingView = (ProgressBar) findViewById(R.id.loading);
+        loadingView.setVisibility(View.VISIBLE);
         pillService.createNewPill(pill,this);
     }
 
     public void onResponseSuccess(){
+        ProgressBar loadingView = (ProgressBar) findViewById(R.id.loading);
+        loadingView.setVisibility(View.INVISIBLE);
 
         Intent intent = new Intent(NewPillStep4.this, PillboxActivity.class);
-        startActivityForResult(intent,STEP_CODE);
-
+        setResult(STEP_CODE, intent);
+        finish();
     }
 
+    public void onResponseError() {
+        Toast.makeText(this, "Se produjo un error de conexión en el pastillero, intente luego",
+                Toast.LENGTH_LONG).show();
+        ProgressBar loadingView = (ProgressBar) findViewById(R.id.loading);
+        loadingView.setVisibility(View.INVISIBLE);
+        finish();
+
+    }
 }

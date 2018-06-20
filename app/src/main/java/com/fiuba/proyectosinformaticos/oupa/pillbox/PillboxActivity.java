@@ -38,6 +38,7 @@ public class PillboxActivity extends AppCompatActivity {
     private PillService pillService;
 
     public static final int REQUEST_CODE = 1;
+    public static final int RESULT_CODE_ADDED_PILL = 400;
 
     public PillboxActivity() {
     }
@@ -115,6 +116,10 @@ public class PillboxActivity extends AppCompatActivity {
                 pillsArray.set(pillPosition, pill);
                 displayPills();
 
+            }else if(requestCode == REQUEST_CODE && resultCode == RESULT_CODE_ADDED_PILL){
+                ProgressBar loadingView = (ProgressBar) findViewById(R.id.loading);
+                loadingView.setVisibility(View.VISIBLE);
+                pillService.getPillsForToday(this);
             }
         } catch (Exception ex) {
             Toast.makeText(this, ex.toString(),
