@@ -8,53 +8,86 @@
     tools:context=".pillbox.NewPillStep4"
     tools:showIn="@layout/activity_new_pill_step4">
 
-    <ImageButton
-        android:id="@+id/btn_close"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="top|end"
-        android:layout_margin="15dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_weight="1"
-        android:background="@drawable/close"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="10"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/pillInformation"
-        android:layout_width="328dp"
-        android:layout_height="366dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="32dp"
-        android:selectAllOnFocus="true"
-        android:text="@string/add_pill_description"
-        android:textSize="40dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_close" />
+        <TextView
+            android:id="@+id/pillInformation"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:selectAllOnFocus="true"
+            android:layout_weight="1"
+            android:text="@string/add_pill_description"
+            android:textSize="35sp" />
+
+        <TextView
+            android:id="@+id/pill_name"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Ibuprofeno"
+            android:layout_weight="1"
+            android:textSize="35sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/pill_date_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:text="Fecha: 12/08/2108"
+            android:textSize="35sp" />
+
+        <TextView
+            android:id="@+id/pill_hour_info"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Hora: 12:00:00"
+            android:textSize="35sp" />
 
 
-    <Button
-        android:id="@+id/confirmButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="25dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="30dp"
-        android:background="@color/greenMaterial"
-        android:onClick="confirmButtonPressed"
-        android:text="@string/confirm_button"
-        android:textColor="@color/white"
-        android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pillInformation"
-        app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/pill_notification"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Será notificado 10 minutos antes de la hora seleccionada"
+            android:textSize="35sp" />
+
+        <Button
+            android:id="@+id/confirmButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/greenMaterial"
+            android:onClick="confirmButtonPressed"
+            android:text="@string/confirm_button"
+            android:textColor="@color/white"
+            android:textSize="35sp" />
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

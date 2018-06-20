@@ -12,7 +12,7 @@
     <ListView
         android:id="@+id/list_of_pills"
         android:layout_width="match_parent"
-        android:layout_height="476dp"
+        android:layout_height="match_parent"
         android:layout_above="@id/btn_pill"
         android:divider="@android:color/transparent"
         android:dividerHeight="16dp"

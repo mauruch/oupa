@@ -32,14 +32,6 @@ public class NewPillStep2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_pill_step2);
 
-        ImageButton closeButton = (ImageButton) findViewById(R.id.btn_close);
-        closeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
         updateDate();
     }
 
