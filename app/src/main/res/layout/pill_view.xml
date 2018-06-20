@@ -38,7 +38,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:textColor="@color/white"
-        android:textSize="40sp"
+        android:textSize="30sp"
         android:textStyle="normal|bold"
         app:layout_constraintEnd_toStartOf="@+id/pillImage"
         app:layout_constraintHorizontal_bias="0.0"
