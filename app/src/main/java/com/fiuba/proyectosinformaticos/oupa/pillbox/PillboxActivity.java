@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.fiuba.proyectosinformaticos.oupa.R;
@@ -63,7 +64,7 @@ public class PillboxActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PillboxActivity.this, NewPillStep1.class);
-                startActivityForResult(intent,REQUEST_CODE);
+                startActivityForResult(intent, REQUEST_CODE);
 
             }
         });
@@ -71,7 +72,7 @@ public class PillboxActivity extends AppCompatActivity {
         setupInitials();
     }
 
-    private void setupInitials(){
+    private void setupInitials() {
         pillsArray = new ArrayList<Pill>();
         pillService.getPillsForToday(this);
 
@@ -79,8 +80,8 @@ public class PillboxActivity extends AppCompatActivity {
 
 
     private void displayPills() {
-        final ListView pillsList = (ListView)findViewById(R.id.list_of_pills);
-        PillAdapter pillAdapter = new PillAdapter(this,pillsArray);
+        final ListView pillsList = (ListView) findViewById(R.id.list_of_pills);
+        PillAdapter pillAdapter = new PillAdapter(this, pillsArray);
         pillsList.setAdapter(pillAdapter);
         pillsList.setSelection(this.pillsArray.size());
 
@@ -91,13 +92,13 @@ public class PillboxActivity extends AppCompatActivity {
                 pillPosition = position;
 
                 Pill pill = pillsArray.get(position);
-                if(!pill.shouldBeDrinked()){
+                if (!pill.shouldBeDrinked()) {
                     return;
                 }
 
                 Intent intent = new Intent(PillboxActivity.this, DrinkedPillActivity.class);
                 intent.putExtra("pill", pill);
-                startActivityForResult(intent,REQUEST_CODE);
+                startActivityForResult(intent, REQUEST_CODE);
             }
         });
     }
@@ -108,10 +109,10 @@ public class PillboxActivity extends AppCompatActivity {
         try {
             super.onActivityResult(requestCode, resultCode, data);
 
-            if (requestCode == REQUEST_CODE  && resultCode  == RESULT_OK) {
+            if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
                 //TODO: mandar al server que se tomo la pasti
                 Pill pill = (Pill) data.getSerializableExtra("pill");
-                pillsArray.set(pillPosition,pill);
+                pillsArray.set(pillPosition, pill);
                 displayPills();
 
             }
@@ -126,7 +127,7 @@ public class PillboxActivity extends AppCompatActivity {
         this.pillsArray = pillsArray;
     }
 
-    public void onResponseSuccess(ArrayList<PillResponse> pillResponseArrayList){
+    public void onResponseSuccess(ArrayList<PillResponse> pillResponseArrayList) {
 
         for (PillResponse pillResponse : pillResponseArrayList) {
 
@@ -139,13 +140,25 @@ public class PillboxActivity extends AppCompatActivity {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS");
                 Date parsedDate = dateFormat.parse(pillResponse.time);
                 pill.date = parsedDate;
-            } catch(Exception e) { //this generic but you can control another types of exception
+            } catch (Exception e) { //this generic but you can control another types of exception
                 // look the origin of excption
             }
 
             pillsArray.add(pill);
         }
+
+        ProgressBar loadingView = (ProgressBar) findViewById(R.id.loading);
+        loadingView.setVisibility(View.INVISIBLE);
         displayPills();
+
+    }
+
+    public void onResponseError() {
+        Toast.makeText(this, "Se produjo un error de conexión en el pastillero, intente luego",
+                Toast.LENGTH_LONG).show();
+        ProgressBar loadingView = (ProgressBar) findViewById(R.id.loading);
+        loadingView.setVisibility(View.INVISIBLE);
+        finish();
 
     }
 

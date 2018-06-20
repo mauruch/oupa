@@ -49,6 +49,16 @@
 
     </android.support.constraint.ConstraintLayout>
 
+    <ProgressBar
+        android:id="@+id/loading"
+        style="?android:attr/progressBarStyle"
+
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+
+        />
+
     <include
         layout="@layout/content_pillbox"
         android:layout_width="wrap_content"

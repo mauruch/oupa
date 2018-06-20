@@ -72,6 +72,7 @@ public class PillService {
                         delegate.onResponseSuccess(response.body());
                     }else {
                         Log.i("PILLSERVICE", "NO RESPONSE");
+                        delegate.onResponseError();
                     }
                 } else {
                     if(response.body() != null) {
@@ -79,11 +80,13 @@ public class PillService {
                     }else {
                         Log.e("PILLSERVICE", "NO RESPONSE");
                     }
+                    delegate.onResponseError();
                 }
             }
 
             @Override
             public void onFailure(Call<ArrayList<PillResponse>> call, Throwable t) {
+                delegate.onResponseError();
                 Log.e("PILLSERVICE", t.getMessage());
             }
         });
