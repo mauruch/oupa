@@ -95,7 +95,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Telefono"
+                    android:text="Teléfono"
                     android:textColor="@color/white"
                     android:textSize="30sp" />
 
@@ -142,7 +142,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="2dp"
                 android:layout_weight="1"
-                android:background="@color/midblue"
+                android:background="@color/colorPrimaryDark"
                 android:orientation="vertical">
 
                 <ImageView
@@ -156,7 +156,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Camara"
+                    android:text="Cámara"
                     android:textColor="@color/white"
                     android:textSize="30sp" />
 
@@ -182,7 +182,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Galeria"
+                    android:text="Galería"
                     android:textColor="@color/white"
                     android:textSize="30sp" />
 
