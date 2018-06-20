@@ -59,7 +59,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Mauricio"
+                    android:text="Osiris"
                     android:textColor="@color/white"
                     android:textSize="30sp" />
 
@@ -71,7 +71,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="2dp"
                 android:layout_weight="1"
-                android:background="@color/brown"
+                android:background="@color/colorAccent"
                 android:orientation="vertical">
 
                 <ImageView
@@ -88,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:scaleType="fitXY"
-                    android:text="El Tano"
+                    android:text="Nere"
                     android:textColor="@color/white"
                     android:textSize="30sp" />
 
@@ -137,7 +137,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="2dp"
                 android:layout_weight="1"
-                android:background="@color/colorAccent"
+                android:background="@color/brown"
                 android:orientation="vertical">
 
                 <ImageView
@@ -153,7 +153,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Hija"
+                    android:text="Mauro"
                     android:textColor="@color/white"
                     android:textSize="30sp" />
 
@@ -190,7 +190,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Donald"
+                    android:text="Agus"
                     android:textColor="@color/white"
                     android:textSize="30sp" />
 
@@ -218,7 +218,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Kim"
+                    android:text="Ana"
                     android:textColor="@color/white"
                     android:textSize="30sp" />
 
