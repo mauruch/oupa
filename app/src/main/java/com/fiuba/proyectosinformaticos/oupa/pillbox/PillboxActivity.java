@@ -87,9 +87,16 @@ public class PillboxActivity extends AppCompatActivity {
         pillsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             public void onItemClick(AdapterView<?> adapter, View view, int position, long arg) {
+
                 pillPosition = position;
+
+                Pill pill = pillsArray.get(position);
+                if(!pill.shouldBeDrinked()){
+                    return;
+                }
+
                 Intent intent = new Intent(PillboxActivity.this, DrinkedPillActivity.class);
-                intent.putExtra("pill", pillsArray.get(position));
+                intent.putExtra("pill", pill);
                 startActivityForResult(intent,REQUEST_CODE);
             }
         });
@@ -126,6 +133,7 @@ public class PillboxActivity extends AppCompatActivity {
             Pill pill = new Pill();
             pill.name = pillResponse.name;
             pill.drinked = pillResponse.taken;
+            pill.id = pillResponse.id;
 
             try {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS");

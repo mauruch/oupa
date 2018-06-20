@@ -13,6 +13,8 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 public interface OupaApi {
 
@@ -24,6 +26,10 @@ public interface OupaApi {
 
     @GET("/personal_medicine_reminder")
     Call<ArrayList<PillResponse>> getPillsForToday(@Header("Authorization") String accessToken);
+
+    //TODO
+    @PUT("/personal_medicine_reminder")
+    Call<Void> drinkedPill(@Header("Authorization") String accessToken, @Path("id") String id);
 
     @POST("/users/sessions")
     Call<UserSession> createUserSession(@Body UserSessionRequest sessionRequest);

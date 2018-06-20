@@ -16,6 +16,7 @@ public class Pill implements Serializable{
     public Date date;
     public boolean repeat;
     public boolean drinked;
+    public int id;
 
     public String hourString() {
         DateFormat df = new SimpleDateFormat("hh:mm a");
@@ -23,8 +24,8 @@ public class Pill implements Serializable{
     }
 
     public boolean shouldBeDrinked(){
-        //TODO
-        return true;
+        Date now = new Date();
+        return now.after(this.date);
     }
 
 }

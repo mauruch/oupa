@@ -23,4 +23,7 @@ public class PillResponse {
 
     @SerializedName("taken")
     public boolean taken;
+
+    @SerializedName("id")
+    public int id;
 }
