@@ -14,10 +14,17 @@ import android.widget.Toast;
 
 import com.fiuba.proyectosinformaticos.oupa.R;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.model.Pill;
+import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillResponse;
+import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillService;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.views.PillAdapter;
 
 import java.lang.reflect.Array;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -26,23 +33,29 @@ public class PillboxActivity extends AppCompatActivity {
 
     private ArrayList<Pill> pillsArray;
     private Integer pillPosition;
+    private PillService pillService;
 
     public static final int REQUEST_CODE = 1;
+
+    public PillboxActivity() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pillbox);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        pillService = new PillService();
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            //    Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-              //          .setAction("Action", null).show();
                 Intent intent = new Intent(PillboxActivity.this, NewPillStep1.class);
                 startActivityForResult(intent,REQUEST_CODE);
 
@@ -53,54 +66,11 @@ public class PillboxActivity extends AppCompatActivity {
     }
 
     private void setupInitials(){
-        createPills();
-        displayPills();
-    }
-
-    //TODO: delete this method when server is integrated
-    private void createPills(){
-
         pillsArray = new ArrayList<Pill>();
+        pillService.getPillsForToday(this);
 
-        Pill pill1 = new Pill();
-        pill1.name = "Aspirina";
-        pill1.drinked = true;
-        pill1.date = new Date();
-
-        Pill pill2 = new Pill();
-        pill2.name = "Aspirina 2";
-        pill2.drinked = true;
-        pill2.date = new Date();
-
-        Pill pill3 = new Pill();
-        pill3.name = "Aspirina 3";
-        pill3.drinked = false;
-        pill3.date = new Date();
-
-        Pill pill4 = new Pill();
-        pill4.name = "Alplax";
-        pill4.date = new Date();
-
-        Pill pill5 = new Pill();
-        pill5.name = "Otra pasti";
-        pill5.date = new Date();
-
-        Pill pill6 = new Pill();
-        pill6.name = "Otraaa";
-        pill6.date = new Date();
-
-        Pill pill7 = new Pill();
-        pill7.name = "Aspirina";
-        pill7.date = new Date();
-
-        pillsArray.add(pill1);
-        pillsArray.add(pill2);
-        pillsArray.add(pill3);
-        pillsArray.add(pill4);
-        pillsArray.add(pill5);
-        pillsArray.add(pill6);
-        pillsArray.add(pill7);
     }
+
 
     private void displayPills() {
         final ListView pillsList = (ListView)findViewById(R.id.list_of_pills);
@@ -136,6 +106,30 @@ public class PillboxActivity extends AppCompatActivity {
             Toast.makeText(this, ex.toString(),
                     Toast.LENGTH_SHORT).show();
         }
+
+    }
+
+    public PillboxActivity(ArrayList<Pill> pillsArray) {
+        this.pillsArray = pillsArray;
+    }
+
+    public void onResponseSuccess(ArrayList<PillResponse> pillResponseArrayList){
+
+        for (PillResponse pillResponse : pillResponseArrayList) {
+
+            Pill pill = new Pill();
+            pill.name = pillResponse.name;
+            pill.drinked = pillResponse.taken;
+
+            //Necesito agregarle las 3 horas de la zona horaria al timestamp
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(new Date(pillResponse.time.getTime()));
+            cal.add(Calendar.HOUR_OF_DAY, 3);
+            pill.date = cal.getTime();
+
+            pillsArray.add(pill);
+        }
+        displayPills();
 
     }
 
