@@ -58,8 +58,8 @@ public class PillboxActivity extends AppCompatActivity {
         pillService = new PillService();
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        ImageButton newPillButton = (ImageButton) findViewById(R.id.btn_pill);
+        newPillButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PillboxActivity.this, NewPillStep1.class);
