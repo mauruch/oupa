@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.DrawableRes;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,21 +49,21 @@ public class PillAdapter extends ArrayAdapter<Pill> {
         nameTextView.setText(pill.name);
 
         if(pill.shouldBeDrinked() && pill.drinked){
-            convertView.setBackgroundColor(Color.parseColor("#226497b1"));
-            hourTextView.setTextColor(Color.parseColor("#6497b1"));
-            nameTextView.setTextColor(Color.parseColor("#6497b1"));
+            convertView.setBackgroundColor(ContextCompat.getColor(super.getContext(),R.color.p_takenBg));
+            hourTextView.setTextColor(ContextCompat.getColor(super.getContext(),R.color.p_takenText));
+            nameTextView.setTextColor(ContextCompat.getColor(super.getContext(),R.color.p_takenText));
             imageView.setImageResource(R.drawable.pill_ok);
             imageView.setVisibility(View.VISIBLE);
         }else if((pill.shouldBeDrinked() && !pill.drinked) || (!pill.shouldBeDrinked() && pill.drinked)){
-            convertView.setBackgroundColor(Color.parseColor("#22e50f0f"));
-            hourTextView.setTextColor(Color.parseColor("#e50f0f"));
-            nameTextView.setTextColor(Color.parseColor("#e50f0f"));
+            convertView.setBackgroundColor(ContextCompat.getColor(super.getContext(),R.color.p_notTakenBg));
+            hourTextView.setTextColor(ContextCompat.getColor(super.getContext(),R.color.p_notTakenText));
+            nameTextView.setTextColor(ContextCompat.getColor(super.getContext(),R.color.p_notTakenText));
             imageView.setImageResource(R.drawable.pill_nok);
-            imageView.setVisibility(View.VISIBLE);
+            imageView.setVisibility(View.INVISIBLE);
         }else{
-            convertView.setBackgroundColor(Color.parseColor("#220FB7E5"));
-            hourTextView.setTextColor(Color.parseColor("#0FB7E5"));
-            nameTextView.setTextColor(Color.parseColor("#0FB7E5"));
+            convertView.setBackgroundColor(ContextCompat.getColor(super.getContext(),R.color.p_futureBg));
+            hourTextView.setTextColor(ContextCompat.getColor(super.getContext(),R.color.p_futureText));
+            nameTextView.setTextColor(ContextCompat.getColor(super.getContext(),R.color.p_futureText));
             imageView.setVisibility(View.INVISIBLE);
         }
 
