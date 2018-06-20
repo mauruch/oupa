@@ -18,7 +18,11 @@ import com.fiuba.proyectosinformaticos.oupa.R;
 public class PhoneActivity extends AppCompatActivity {
 
     private View.OnClickListener goHomeListener = goHomeListener();
-    private View.OnClickListener callListener = callListener();
+    private View.OnClickListener callListener = callListenerGeneric();
+
+    private View.OnClickListener callListenerAgus = callListenerAgus();
+
+    private View.OnClickListener callListenerNere = callListenerNere();
     private LinearLayout contacto1;
     private LinearLayout contacto2;
     private LinearLayout contacto3;
@@ -57,7 +61,7 @@ public class PhoneActivity extends AppCompatActivity {
         };
     }
 
-    private View.OnClickListener callListener() {
+    private View.OnClickListener callListenerGeneric() {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,13 +82,55 @@ public class PhoneActivity extends AppCompatActivity {
         };
     }
 
+    private View.OnClickListener callListenerAgus() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:+5491164109956"));
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                startActivity(callIntent);
+            }
+        };
+    }
+
+    private View.OnClickListener callListenerNere() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:+5491165287206"));
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                startActivity(callIntent);
+            }
+        };
+    }
+
     private void attachEvents() {
         redirectButton.setOnClickListener(goHomeListener);
         contacto1.setOnClickListener(callListener);
-        contacto2.setOnClickListener(callListener);
+        contacto2.setOnClickListener(callListenerNere);
         contacto3.setOnClickListener(callListener);
         contacto4.setOnClickListener(callListener);
-        contacto5.setOnClickListener(callListener);
+        contacto5.setOnClickListener(callListenerAgus);
         contacto6.setOnClickListener(callListener);
     }
 
