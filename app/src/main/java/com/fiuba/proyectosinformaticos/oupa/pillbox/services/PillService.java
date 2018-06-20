@@ -6,6 +6,7 @@ import android.util.Log;
 import com.fiuba.proyectosinformaticos.oupa.UserManager;
 import com.fiuba.proyectosinformaticos.oupa.networking.ApiClient;
 import com.fiuba.proyectosinformaticos.oupa.networking.OupaApi;
+import com.fiuba.proyectosinformaticos.oupa.pillbox.NewPillStep4;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.PillboxActivity;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.model.OUPADateFormat;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.model.Pill;
@@ -25,7 +26,7 @@ public class PillService {
         oupaApi = ApiClient.getInstance().getOupaClient();
     }
 
-    public void createNewPill(Pill pill) {
+    public void createNewPill(Pill pill, final NewPillStep4 delegate) {
 
         PillSerialized pillSerialized = new PillSerialized();
         pillSerialized.personal_medicine_reminder = new PillSerialized.Personal_medicine_reminder();
@@ -48,6 +49,7 @@ public class PillService {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.code() > 199 && response.code() < 300) {
                     Log.i("PILLSERVICE", "NEW PILL CREATED!!!");
+                    delegate.onResponseSuccess();
                 } else {
                     Log.e("PILLSERVICE", response.body().toString());
                 }

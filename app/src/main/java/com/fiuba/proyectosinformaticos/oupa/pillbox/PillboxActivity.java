@@ -121,11 +121,13 @@ public class PillboxActivity extends AppCompatActivity {
             pill.name = pillResponse.name;
             pill.drinked = pillResponse.taken;
 
-            //Necesito agregarle las 3 horas de la zona horaria al timestamp
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(new Date(pillResponse.time.getTime()));
-            cal.add(Calendar.HOUR_OF_DAY, 3);
-            pill.date = cal.getTime();
+            try {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS");
+                Date parsedDate = dateFormat.parse(pillResponse.time);
+                pill.date = parsedDate;
+            } catch(Exception e) { //this generic but you can control another types of exception
+                // look the origin of excption
+            }
 
             pillsArray.add(pill);
         }

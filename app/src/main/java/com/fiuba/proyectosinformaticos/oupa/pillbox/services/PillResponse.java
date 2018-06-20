@@ -16,10 +16,10 @@ public class PillResponse {
     public String notes;
     @Expose
     @SerializedName("date")
-    public Timestamp date;
+    public String date;
     @Expose
     @SerializedName("time")
-    public Timestamp time;
+    public String time;
 
     @SerializedName("taken")
     public boolean taken;

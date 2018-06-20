@@ -18,7 +18,7 @@ public class Pill implements Serializable{
     public boolean drinked;
 
     public String hourString() {
-        DateFormat df = new SimpleDateFormat("hh:'00' a");
+        DateFormat df = new SimpleDateFormat("hh:mm a");
         return df.format(this.date);
     }
 

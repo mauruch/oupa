@@ -55,13 +55,14 @@ public class NewPillStep4 extends AppCompatActivity {
     }
 
     public void confirmButtonPressed(View view) {
-        Intent intent = new Intent(NewPillStep4.this, PillboxActivity.class);
-        intent.putExtra("pill", pill);
-        startActivityForResult(intent,STEP_CODE);
-        pillService.createNewPill(pill);
-
-     //   finish();
+        pillService.createNewPill(pill,this);
     }
 
+    public void onResponseSuccess(){
+
+        Intent intent = new Intent(NewPillStep4.this, PillboxActivity.class);
+        startActivityForResult(intent,STEP_CODE);
+
+    }
 
 }
