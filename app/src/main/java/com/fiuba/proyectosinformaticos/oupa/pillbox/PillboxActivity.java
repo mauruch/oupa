@@ -102,7 +102,7 @@ public class PillboxActivity extends AppCompatActivity {
                 pillsArray.set(pillPosition, pill);
                 displayPills();
 
-            }else if(requestCode == REQUEST_CODE && resultCode == RESULT_CODE_ADDED_PILL){
+            } else if(requestCode == REQUEST_CODE && resultCode == RESULT_CODE_ADDED_PILL){
                 ProgressBar loadingView = (ProgressBar) findViewById(R.id.loading);
                 loadingView.setVisibility(View.VISIBLE);
                 pillService.getPillsForToday(this);
