@@ -68,6 +68,7 @@ public class NewPillStep4 extends AppCompatActivity {
 
         Intent intent = new Intent(NewPillStep4.this, PillboxActivity.class);
         setResult(STEP_CODE, intent);
+        startActivity(intent);
         finish();
     }
 
