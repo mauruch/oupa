@@ -25,5 +25,5 @@ public class PillResponse {
     public boolean taken;
 
     @SerializedName("id")
-    public int id;
+    public String id;
 }

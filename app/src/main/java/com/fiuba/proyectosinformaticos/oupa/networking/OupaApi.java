@@ -5,6 +5,7 @@ import com.fiuba.proyectosinformaticos.oupa.model.request.UserSessionRequest;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.model.Pill;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillResponse;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillSerialized;
+import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillTakenSerialized;
 
 import java.util.ArrayList;
 
@@ -27,9 +28,8 @@ public interface OupaApi {
     @GET("/personal_medicine_reminder")
     Call<ArrayList<PillResponse>> getPillsForToday(@Header("Authorization") String accessToken);
 
-    //TODO
-    @PUT("/personal_medicine_reminder")
-    Call<Void> drinkedPill(@Header("Authorization") String accessToken, @Path("id") String id);
+    @PUT("/personal_medicine_reminder/{id}")
+    Call<PillResponse> drinkedPill(@Header("Authorization") String accessToken, @Path("id") String id, @Body PillTakenSerialized pillSerialized);
 
     @POST("/users/sessions")
     Call<UserSession> createUserSession(@Body UserSessionRequest sessionRequest);
