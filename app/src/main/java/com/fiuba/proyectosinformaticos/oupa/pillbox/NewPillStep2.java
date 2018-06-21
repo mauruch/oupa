@@ -17,6 +17,7 @@ import com.fiuba.proyectosinformaticos.oupa.R;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.model.OUPADateFormat;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.model.Pill;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -32,28 +33,21 @@ public class NewPillStep2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_pill_step2);
 
-        ImageButton closeButton = (ImageButton) findViewById(R.id.btn_close);
-        closeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
         updateDate();
     }
 
 
     private void updateDate() {
         OUPADateFormat customDateFormat = new OUPADateFormat();
-        String myFormat = customDateFormat.dateFormat();
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ENGLISH);
+        DateFormat hourFormat = new SimpleDateFormat(customDateFormat.timeFormatForServer());
+        TextView pillHourText = findViewById(R.id.pill_hour_info);
+        String hours = hourFormat.format(myCalendar.getTime());
+        pillHourText.setText("Hora: " + hours);
 
-        TextView selectedDateTextView = (TextView) findViewById(R.id.selectedDate);
-        String dateString = "Fecha y hora seleccionadas: " + sdf.format(myCalendar.getTime());
-
-        selectedDateTextView.setText(dateString);
-
+        DateFormat dateFormat = new SimpleDateFormat(customDateFormat.dateFormatPill());
+        TextView pillDateText = findViewById(R.id.pill_date_info);
+        String date = dateFormat.format(myCalendar.getTime());
+        pillDateText.setText("Fecha: " + date);
     }
 
     public void selectDateButtonPressed(View view) {
@@ -71,6 +65,7 @@ public class NewPillStep2 extends AppCompatActivity {
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 myCalendar.set(Calendar.HOUR, hourOfDay);
                 myCalendar.set(Calendar.MINUTE, minute);
+                myCalendar.set(Calendar.AM_PM, Calendar.AM);
                 updateDate();
             }
         },  Calendar.HOUR_OF_DAY,  Calendar.MINUTE, false);

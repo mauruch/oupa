@@ -33,31 +33,31 @@ public class NewPillStep4 extends AppCompatActivity {
 
         pillService = new PillService();
 
-        ImageButton closeButton = (ImageButton) findViewById(R.id.btn_close);
-        closeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
         pill = (Pill) getIntent().getSerializableExtra("pill");
         setupPillDescription();
     }
 
     private void setupPillDescription(){
 
-        TextView pillDescriptionTextView = (TextView) findViewById(R.id.pillInformation);
+        TextView pillName = findViewById(R.id.pill_name);
+        pillName.setText(pill.name);
+
         OUPADateFormat customDateFormat = new OUPADateFormat();
 
-        DateFormat dateFormat = new SimpleDateFormat(customDateFormat.dateFormat());
-        String pillDate = dateFormat.format(pill.date);
-        String pillDescription = "Se agregará pastilla "+pill.name+ " para la fecha: "+pillDate + " y le notificaremos 10 minutos antes de la hora seleccionada";
-        pillDescriptionTextView.setText(pillDescription);
+        DateFormat hourFormat = new SimpleDateFormat(customDateFormat.timeFormatForServer());
+        TextView pillHourText = findViewById(R.id.pill_hour_info);
+        String hours = hourFormat.format(pill.date);
+        pillHourText.setText("Hora: " + hours);
+
+        DateFormat dateFormat = new SimpleDateFormat(customDateFormat.dateFormatPill());
+        TextView pillDateText = findViewById(R.id.pill_date_info);
+        String date = dateFormat.format(pill.date);
+        pillDateText.setText("Fecha: " + date);
+
     }
 
     public void confirmButtonPressed(View view) {
-        ProgressBar loadingView = (ProgressBar) findViewById(R.id.loading);
+        ProgressBar loadingView = findViewById(R.id.loading);
         loadingView.setVisibility(View.VISIBLE);
         pillService.createNewPill(pill,this);
     }

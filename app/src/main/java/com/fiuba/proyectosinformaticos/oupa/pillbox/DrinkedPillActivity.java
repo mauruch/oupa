@@ -29,14 +29,6 @@ public class DrinkedPillActivity extends AppCompatActivity {
         TextView hourTextView = (TextView) findViewById(R.id.pillTitle);
         hourTextView.setText(title);
 
-        ImageButton closeButton = (ImageButton) findViewById(R.id.btn_close);
-        closeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
         ImageButton confirmButton = (ImageButton) findViewById(R.id.btn_confirm);
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override

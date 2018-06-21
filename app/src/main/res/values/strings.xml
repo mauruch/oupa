@@ -17,7 +17,7 @@
     <string name="select_date">Seleccionar fecha</string>
     <string name="select_hour">Seleccionar hora</string>
     <string name="selected_date">Fecha y hora seleccionadas: </string>
-    <string name="add_pill_description">Se agregará pastilla</string>
+    <string name="add_pill_description">Se agregará la pastilla</string>
     <string name="title_activity_new_pill_step2">NewPillStep2</string>
     <string name="title_activity_new_pill_step4">NewPillStep4</string>
 

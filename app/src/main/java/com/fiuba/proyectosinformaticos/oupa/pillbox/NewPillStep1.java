@@ -23,16 +23,6 @@ public class NewPillStep1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_pill_step1);
-
-        ImageButton closeButton = (ImageButton) findViewById(R.id.btn_close);
-        closeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-
     }
 
     public void confirmButtonPressed(View view) {
