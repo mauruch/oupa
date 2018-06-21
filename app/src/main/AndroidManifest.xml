@@ -3,10 +3,12 @@
     package="com.fiuba.proyectosinformaticos.oupa">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.FLASHLIGHT"/>
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <uses-feature android:name="android.hardware.camera" />
 
     <application
@@ -44,23 +46,25 @@
         <activity
             android:name=".pillbox.NewPillStep4"
             android:label="@string/title_activity_new_pill_step4"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".activities.SOSActivity"></activity>
-        <activity android:name=".activities.PhoneActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.SOSActivity" />
+        <activity android:name=".activities.PhoneActivity" />
 
-        <service
-            android:name=".firebase.MyFirebaseInstanceIDService">
+        <service android:name=".firebase.MyFirebaseInstanceIDService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".firebase.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
-        <service
-            android:name=".firebase.MyFirebaseMessagingService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
-            </intent-filter>
-        </service>
+        <receiver android:name=".pillbox.AlarmReceiver">
+
+        </receiver>
+
     </application>
 
 </manifest>

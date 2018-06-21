@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.fiuba.proyectosinformaticos.oupa.R;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.model.Pill;
+import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillClient;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillResponse;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillService;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.views.PillAdapter;
@@ -25,7 +26,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 
-public class PillboxActivity extends AppCompatActivity {
+public class PillboxActivity extends AppCompatActivity implements PillClient {
 
     private ArrayList<Pill> pillsArray;
     private Integer pillPosition;
@@ -118,7 +119,7 @@ public class PillboxActivity extends AppCompatActivity {
         this.pillsArray = pillsArray;
     }
 
-    public void onResponseSuccess(ArrayList<PillResponse> pillResponseArrayList) {
+    /*public void onResponseSuccess(ArrayList<PillResponse> pillResponseArrayList) {
 
         for (PillResponse pillResponse : pillResponseArrayList) {
 
@@ -142,6 +143,33 @@ public class PillboxActivity extends AppCompatActivity {
         loadingView.setVisibility(View.INVISIBLE);
         displayPills();
 
+    }*/
+
+    @Override
+    public void onResponseSuccess(Object responseBody) {
+        ArrayList<PillResponse> pillResponseArrayList = (ArrayList<PillResponse>) responseBody;
+
+        for (PillResponse pillResponse : pillResponseArrayList) {
+
+            Pill pill = new Pill();
+            pill.name = pillResponse.name;
+            pill.drinked = pillResponse.taken;
+            pill.id = pillResponse.id;
+
+            try {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS");
+                Date parsedDate = dateFormat.parse(pillResponse.time);
+                pill.date = parsedDate;
+            } catch (Exception e) { //this generic but you can control another types of exception
+                // look the origin of excption
+            }
+
+            pillsArray.add(pill);
+        }
+
+        ProgressBar loadingView = (ProgressBar) findViewById(R.id.loading);
+        loadingView.setVisibility(View.INVISIBLE);
+        displayPills();
     }
 
     public void onResponseError() {

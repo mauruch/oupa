@@ -20,5 +20,10 @@
     <string name="add_pill_description">Se agregará la pastilla</string>
     <string name="title_activity_new_pill_step2">NewPillStep2</string>
     <string name="title_activity_new_pill_step4">NewPillStep4</string>
+    <string name="title_activity_notification">NotificationActivity</string>
+    <string name="channel_name">Pills Notification</string>
+    <string name="channel_description">Notification Channel for Pills Alarm</string>
+    <string name="pill_notification_content_title">"Notificación de Oupa"</string>
+    <string name="pill_notification_content_text">Usted tiene que tomar una pastilla</string>
 
 </resources>

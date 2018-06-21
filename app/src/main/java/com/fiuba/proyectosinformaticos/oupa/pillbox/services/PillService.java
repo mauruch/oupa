@@ -26,7 +26,7 @@ public class PillService {
         oupaApi = ApiClient.getInstance().getOupaClient();
     }
 
-    public void createNewPill(Pill pill, final NewPillStep4 delegate) {
+    public void createNewPill(final Pill pill, final NewPillStep4 delegate) {
 
         PillSerialized pillSerialized = new PillSerialized();
         pillSerialized.personal_medicine_reminder = new PillSerialized.Personal_medicine_reminder();
@@ -49,7 +49,7 @@ public class PillService {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.code() > 199 && response.code() < 300) {
                     Log.i("PILLSERVICE", "NEW PILL CREATED!!!");
-                    delegate.onResponseSuccess();
+                    delegate.onResponseSuccess(pill);
                 } else {
                     Log.e("PILLSERVICE", response.body().toString());
                     delegate.onResponseError();
@@ -64,7 +64,7 @@ public class PillService {
         });
     }
 
-    public void getPillsForToday(final PillboxActivity delegate) {
+    public void getPillsForToday(final PillClient delegate) {
         oupaApi.getPillsForToday(UserManager.getInstance().getAuthorizationToken()).enqueue(new Callback<ArrayList<PillResponse>>() {
             @Override
             public void onResponse(Call<ArrayList<PillResponse>> call, Response<ArrayList<PillResponse>> response) {

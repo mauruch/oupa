@@ -1,11 +1,15 @@
 package com.fiuba.proyectosinformaticos.oupa.pillbox;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -15,12 +19,14 @@ import android.widget.Toast;
 import com.fiuba.proyectosinformaticos.oupa.R;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.model.OUPADateFormat;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.model.Pill;
+import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillClient;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillService;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
-public class NewPillStep4 extends AppCompatActivity {
+public class NewPillStep4 extends AppCompatActivity implements PillClient{
 
     private  Pill pill;
     public static final int STEP_CODE = 400;
@@ -62,13 +68,41 @@ public class NewPillStep4 extends AppCompatActivity {
         pillService.createNewPill(pill,this);
     }
 
-    public void onResponseSuccess(){
+    @Override
+    public void onResponseSuccess(Object responseBody) {
+
+        Pill pill = (Pill) responseBody;
+
+        scheduleNotification(pill);
+
         ProgressBar loadingView = (ProgressBar) findViewById(R.id.loading);
         loadingView.setVisibility(View.INVISIBLE);
 
         Intent intent = new Intent(NewPillStep4.this, PillboxActivity.class);
         setResult(STEP_CODE, intent);
         finish();
+    }
+
+    public void scheduleNotification(Pill pill) {
+        Intent notificationIntent = new Intent(this, AlarmReceiver.class);
+
+        notificationIntent.putExtra("pill.id",pill.id);
+        notificationIntent.putExtra("pill.name",pill.name);
+        notificationIntent.putExtra("pill.drinked",pill.drinked);
+        notificationIntent.putExtra("pill.date",pill.date);
+
+        PendingIntent broadcast = PendingIntent.getBroadcast(this, pill.id, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(pill.date);
+        cal.add(Calendar.MINUTE, -10);
+        //cal.add(Calendar.SECOND,20);
+
+        Log.i("PILLSALARM","Pildora: "+pill.name+" Hora de la alarma: "+cal.getTime());
+
+        AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+
+        alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), broadcast);
     }
 
     public void onResponseError() {
