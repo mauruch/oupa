@@ -1,5 +1,6 @@
 package com.fiuba.proyectosinformaticos.oupa.pillbox;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -63,12 +64,12 @@ public class NewPillStep4 extends AppCompatActivity {
     }
 
     public void onResponseSuccess(){
+
         ProgressBar loadingView = (ProgressBar) findViewById(R.id.loading);
         loadingView.setVisibility(View.INVISIBLE);
 
         Intent intent = new Intent(NewPillStep4.this, PillboxActivity.class);
         setResult(STEP_CODE, intent);
-        startActivity(intent);
         finish();
     }
 

@@ -22,6 +22,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import static android.content.Intent.FLAG_ACTIVITY_FORWARD_RESULT;
+
 
 public class NewPillStep2 extends AppCompatActivity {
 
@@ -93,7 +95,8 @@ public class NewPillStep2 extends AppCompatActivity {
         //TODO: step de repetir pasti
         Intent intent = new Intent(NewPillStep2.this, NewPillStep4.class);
         intent.putExtra("pill", pill);
-        startActivityForResult(intent,STEP_CODE);
+        intent.addFlags(FLAG_ACTIVITY_FORWARD_RESULT);
+        startActivity(intent);
         finish();
     }
 
