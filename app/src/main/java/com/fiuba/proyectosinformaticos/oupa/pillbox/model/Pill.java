@@ -12,7 +12,7 @@ public class Pill implements Serializable{
     public Date date;
     public boolean repeat;
     public boolean drinked;
-    public int id;
+    public String id;
 
     public String hourString() {
         DateFormat df = new SimpleDateFormat(new OUPADateFormat().timeFormatForServer());

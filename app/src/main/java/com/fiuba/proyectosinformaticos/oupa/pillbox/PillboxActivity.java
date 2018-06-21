@@ -97,8 +97,8 @@ public class PillboxActivity extends AppCompatActivity {
             super.onActivityResult(requestCode, resultCode, data);
 
             if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
-                //TODO: mandar al server que se tomo la pasti
                 Pill pill = (Pill) data.getSerializableExtra("pill");
+                pillService.updatePillDrinked(pill);
                 pillsArray.set(pillPosition, pill);
                 displayPills();
 
