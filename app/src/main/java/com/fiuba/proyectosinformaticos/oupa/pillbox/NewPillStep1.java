@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.fiuba.proyectosinformaticos.oupa.R;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.model.Pill;
 
+import static android.content.Intent.FLAG_ACTIVITY_FORWARD_RESULT;
+
 
 public class NewPillStep1 extends AppCompatActivity {
 
@@ -39,8 +41,11 @@ public class NewPillStep1 extends AppCompatActivity {
         pill.name = pillName;
 
         Intent intent = new Intent(NewPillStep1.this, NewPillStep2.class);
+        intent.addFlags(FLAG_ACTIVITY_FORWARD_RESULT);
         intent.putExtra("pill", pill);
-        startActivityForResult(intent,STEP_CODE);
+        startActivity(intent);
         finish();
     }
+
+
 }
