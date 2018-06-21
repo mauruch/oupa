@@ -30,6 +30,8 @@ public class SOSActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_sos);
 
+        getSupportActionBar().hide();
+
         titleText = findViewById(R.id.titleText);
         infoText = findViewById(R.id.infoText);
         countDownText = findViewById(R.id.countDownText);

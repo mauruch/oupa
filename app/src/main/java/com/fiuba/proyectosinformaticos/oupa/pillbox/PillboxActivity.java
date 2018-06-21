@@ -20,15 +20,9 @@ import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillResponse;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillService;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.views.PillAdapter;
 
-import java.lang.reflect.Array;
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 
 public class PillboxActivity extends AppCompatActivity {
@@ -48,14 +42,6 @@ public class PillboxActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pillbox);
-
-        ImageButton closeButton = (ImageButton) findViewById(R.id.btn_close);
-        closeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
         pillService = new PillService();
 

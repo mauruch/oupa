@@ -12,7 +12,11 @@ public class OUPADateFormat {
         return "yyyy-MM-dd";
     }
 
+    public String dateFormatPill(){
+        return "dd/MM/yyyy";
+    }
+
     public String timeFormatForServer(){
-        return "hh:mm"; //TODO: ver am pm
+        return "hh:mm aaa";
     }
 }
