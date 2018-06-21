@@ -1,6 +1,7 @@
 package com.fiuba.proyectosinformaticos.oupa.activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -81,6 +82,16 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+
+        LinearLayout galeryLayout = findViewById(R.id.gallery_layout);
+        galeryLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivity(intent);
+            }
+        });
+
 
         LinearLayout sosLayout = findViewById(R.id.sos_layout);
         sosLayout.setOnClickListener(new View.OnClickListener() {
