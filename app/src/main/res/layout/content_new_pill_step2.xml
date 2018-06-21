@@ -11,15 +11,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:weightSum="8"
         android:orientation="vertical">
 
         <Button
             android:id="@+id/selectDate"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="40dp"
-            android:layout_marginHorizontal="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_weight="1"
             android:background="@color/greenMaterial"
             android:onClick="selectDateButtonPressed"
             android:text="@string/select_date"
@@ -29,8 +32,10 @@
         <Button
             android:id="@+id/selectTime"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
+            android:layout_height="0dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_weight="1"
             android:background="@color/greenMaterial"
             android:onClick="selectTimeButtonPressed"
             android:text="@string/select_hour"
@@ -40,16 +45,41 @@
         <TextView
             android:id="@+id/selectedDate"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginHorizontal="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:gravity="center"
+            android:layout_weight="1"
             android:text="@string/selected_date"
             android:selectAllOnFocus="true"
+            android:textSize="35sp" />
+
+        <TextView
+            android:id="@+id/pill_date_info"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:text="Fecha: 12/08/2108"
+            android:textSize="35sp" />
+
+        <TextView
+            android:id="@+id/pill_hour_info"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:text="Hora: 12:00:00"
             android:textSize="35sp" />
 
         <Button
             android:id="@+id/confirmButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_marginHorizontal="30dp"
             android:background="@color/greenMaterial"
             android:onClick="confirmButtonPressed"

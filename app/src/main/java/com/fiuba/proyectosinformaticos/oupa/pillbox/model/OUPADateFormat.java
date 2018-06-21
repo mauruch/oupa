@@ -17,6 +17,6 @@ public class OUPADateFormat {
     }
 
     public String timeFormatForServer(){
-        return "HH:mm"; //TODO: ver am pm
+        return "hh:mm aaa";
     }
 }
