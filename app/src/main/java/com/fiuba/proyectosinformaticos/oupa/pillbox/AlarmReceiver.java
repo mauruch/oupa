@@ -24,15 +24,17 @@ public class AlarmReceiver extends BroadcastReceiver{
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        int idPastilla = intent.getIntExtra("pill.id",0);
+        String idPastilla = intent.getStringExtra("pill.id");
         Log.i("Pastillas",""+idPastilla);
+        Pill pill = (Pill) intent.getSerializableExtra("pillForNotification");
+        Log.i("Pastillas",""+pill.id);
 
         /**TODO Por alguna razon no pude mandar un objeto Pill*/
-        Pill pill = new Pill();
-        pill.id=intent.getIntExtra("pill.id",0);
+        /*Pill pill = new Pill();
+        pill.id=intent.getStringExtra("pill.id");
         pill.name=intent.getStringExtra("pill.name");
         pill.drinked=intent.getBooleanExtra("pill.drinked",false);
-        pill.date=(Date) intent.getSerializableExtra("pill.date");
+        pill.date=(Date) intent.getSerializableExtra("pill.date");*/
 
         // Create an explicit intent for an Activity in your app
         Intent pillboxIntent = new Intent(context, DrinkedPillActivity.class);

@@ -92,12 +92,12 @@ public class NewPillStep4 extends AppCompatActivity implements PillClient{
         notificationIntent.putExtra("pill.drinked",pill.drinked);
         notificationIntent.putExtra("pill.date",pill.date);
 
-        PendingIntent broadcast = PendingIntent.getBroadcast(this, pill.id, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent broadcast = PendingIntent.getBroadcast(this, Integer.parseInt(pill.id), notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Calendar cal = Calendar.getInstance();
         cal.setTime(pill.date);
-        cal.add(Calendar.MINUTE, -10);
-        //cal.add(Calendar.SECOND,20);
+        //cal.add(Calendar.MINUTE, -10);
+        cal.add(Calendar.SECOND,20);
 
         Log.i("PILLSALARM","Pildora: "+pill.name+" Hora de la alarma: "+cal.getTime());
 
