@@ -1,9 +1,5 @@
 package com.fiuba.proyectosinformaticos.oupa.pillbox.model;
 
-import android.graphics.Color;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
-
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -16,10 +12,10 @@ public class Pill implements Serializable{
     public Date date;
     public boolean repeat;
     public boolean drinked;
-    public int id;
+    public String id;
 
     public String hourString() {
-        DateFormat df = new SimpleDateFormat("hh:mm a");
+        DateFormat df = new SimpleDateFormat(new OUPADateFormat().timeFormatForServer());
         return df.format(this.date);
     }
 

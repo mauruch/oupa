@@ -93,4 +93,27 @@ public class PillService {
             }
         });
     }
+
+    public void updatePillDrinked(final Pill pill){
+        PillTakenSerialized pillTakenSerialized = new PillTakenSerialized();
+        pillTakenSerialized.personal_medicine_reminder = new PillTakenSerialized.Personal_medicine_reminder();
+        pillTakenSerialized.personal_medicine_reminder.taken = pill.drinked;
+
+        oupaApi.drinkedPill(UserManager.getInstance().getAuthorizationToken(),pill.id,pillTakenSerialized).enqueue(new Callback<PillResponse>() {
+
+            @Override
+            public void onResponse(Call<PillResponse> call, Response<PillResponse> response) {
+                if (response.code() > 199 && response.code() < 300) {
+                    Log.i("PILLSERVICE", "PILL " +pill.id+" UPDATED!!!");
+                } else {
+                    Log.e("PILLSERVICE", response.body().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PillResponse> call, Throwable t) {
+                Log.e("PILLSERVICE", t.getMessage());
+            }
+        });
+    }
 }
