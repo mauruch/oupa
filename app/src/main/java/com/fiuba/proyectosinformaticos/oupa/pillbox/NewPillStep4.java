@@ -96,8 +96,8 @@ public class NewPillStep4 extends AppCompatActivity implements PillClient{
 
         Calendar cal = Calendar.getInstance();
         cal.setTime(pill.date);
-        //cal.add(Calendar.MINUTE, -10);
-        cal.add(Calendar.SECOND,20);
+        cal.add(Calendar.MINUTE, -10);
+        //cal.add(Calendar.SECOND,20);
 
         Log.i("PILLSALARM","Pildora: "+pill.name+" Hora de la alarma: "+cal.getTime());
 

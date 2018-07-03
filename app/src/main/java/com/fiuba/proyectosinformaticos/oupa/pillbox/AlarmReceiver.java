@@ -24,25 +24,29 @@ public class AlarmReceiver extends BroadcastReceiver{
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        String idPastilla = intent.getStringExtra("pill.id");
+        /*String idPastilla = intent.getStringExtra("pill.id");
         Log.i("Pastillas",""+idPastilla);
         Pill pill = (Pill) intent.getSerializableExtra("pillForNotification");
-        Log.i("Pastillas",""+pill.id);
+        Log.i("Pastillas",""+pill.id);*/
 
         /**TODO Por alguna razon no pude mandar un objeto Pill*/
-        /*Pill pill = new Pill();
+        Pill pill = new Pill();
         pill.id=intent.getStringExtra("pill.id");
         pill.name=intent.getStringExtra("pill.name");
         pill.drinked=intent.getBooleanExtra("pill.drinked",false);
-        pill.date=(Date) intent.getSerializableExtra("pill.date");*/
+        pill.date=(Date) intent.getSerializableExtra("pill.date");
 
         // Create an explicit intent for an Activity in your app
-        Intent pillboxIntent = new Intent(context, DrinkedPillActivity.class);
-        //TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-        //stackBuilder.addNextIntentWithParentStack(pillboxIntent);
+        Intent drinkedPillIntent = new Intent(context, DrinkedPillActivity.class);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+        stackBuilder.addNextIntentWithParentStack(drinkedPillIntent);
 
-        pillboxIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, pillboxIntent, 0);
+        drinkedPillIntent.putExtra("pill",pill);
+
+        //drinkedPillIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        //PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, drinkedPillIntent, 0);
+        PendingIntent pendingIntent =
+                stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, CHANNEL_ID);

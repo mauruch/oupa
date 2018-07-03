@@ -119,32 +119,6 @@ public class PillboxActivity extends AppCompatActivity implements PillClient {
         this.pillsArray = pillsArray;
     }
 
-    /*public void onResponseSuccess(ArrayList<PillResponse> pillResponseArrayList) {
-
-        for (PillResponse pillResponse : pillResponseArrayList) {
-
-            Pill pill = new Pill();
-            pill.name = pillResponse.name;
-            pill.drinked = pillResponse.taken;
-            pill.id = pillResponse.id;
-
-            try {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS");
-                Date parsedDate = dateFormat.parse(pillResponse.time);
-                pill.date = parsedDate;
-            } catch (Exception e) { //this generic but you can control another types of exception
-                // look the origin of excption
-            }
-
-            pillsArray.add(pill);
-        }
-
-        ProgressBar loadingView = (ProgressBar) findViewById(R.id.loading);
-        loadingView.setVisibility(View.INVISIBLE);
-        displayPills();
-
-    }*/
-
     @Override
     public void onResponseSuccess(Object responseBody) {
         ArrayList<PillResponse> pillResponseArrayList = (ArrayList<PillResponse>) responseBody;

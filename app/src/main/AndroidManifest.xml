@@ -34,7 +34,9 @@
         <activity
             android:name=".pillbox.DrinkedPillActivity"
             android:label="@string/title_activity_drinked_pill"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".pillbox.PillboxActivity" />
+        />
         <activity
             android:name=".pillbox.NewPillStep1"
             android:label="@string/title_activity_new_pill_step1"

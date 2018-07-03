@@ -24,6 +24,7 @@ public class DrinkedPillActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         final Pill pill = (Pill) getIntent().getSerializableExtra("pill");
+
         String title = "Tomar " + pill.name;
 
         TextView hourTextView = (TextView) findViewById(R.id.pillTitle);
