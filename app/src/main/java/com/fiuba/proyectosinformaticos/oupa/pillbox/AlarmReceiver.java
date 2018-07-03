@@ -13,6 +13,7 @@ import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
 import com.fiuba.proyectosinformaticos.oupa.R;
+import com.fiuba.proyectosinformaticos.oupa.pillbox.model.ParcelablePill;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.model.Pill;
 
 import java.util.Date;
@@ -36,12 +37,14 @@ public class AlarmReceiver extends BroadcastReceiver{
         pill.drinked=intent.getBooleanExtra("pill.drinked",false);
         pill.date=(Date) intent.getSerializableExtra("pill.date");
 
+        //ParcelablePill parcelablePill = (ParcelablePill) intent.getParcelableExtra("pillForNotification") ;
+
         // Create an explicit intent for an Activity in your app
         Intent drinkedPillIntent = new Intent(context, DrinkedPillActivity.class);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
         stackBuilder.addNextIntentWithParentStack(drinkedPillIntent);
 
-        drinkedPillIntent.putExtra("pill",pill);
+        drinkedPillIntent.putExtra("pillFromAlarm",pill);
 
         //drinkedPillIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         //PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, drinkedPillIntent, 0);

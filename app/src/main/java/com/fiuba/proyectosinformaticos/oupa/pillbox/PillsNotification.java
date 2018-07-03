@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.fiuba.proyectosinformaticos.oupa.activities.MainActivity;
 
+import com.fiuba.proyectosinformaticos.oupa.pillbox.model.ParcelablePill;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.model.Pill;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillClient;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillResponse;
@@ -84,7 +85,13 @@ public class PillsNotification implements PillClient {
         notificationIntent.putExtra("pill.drinked",pill.drinked);
         notificationIntent.putExtra("pill.date",pill.date);
 
-        //notificationIntent.putExtra("pillForNotification",pill);
+        /*ParcelablePill parcelablePill = new ParcelablePill();
+        parcelablePill.id=pill.id;
+        parcelablePill.date=pill.date;
+        parcelablePill.drinked=pill.drinked;
+        parcelablePill.name=pill.name;
+
+        notificationIntent.putExtra("pillForNotification",parcelablePill);*/
 
         PendingIntent broadcast = PendingIntent.getBroadcast(mainActivity, Integer.parseInt(pill.id), notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 

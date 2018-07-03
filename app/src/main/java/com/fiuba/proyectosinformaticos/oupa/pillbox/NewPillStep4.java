@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.fiuba.proyectosinformaticos.oupa.R;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.model.OUPADateFormat;
+import com.fiuba.proyectosinformaticos.oupa.pillbox.model.ParcelablePill;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.model.Pill;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillClient;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillService;
@@ -87,10 +88,17 @@ public class NewPillStep4 extends AppCompatActivity implements PillClient{
     public void scheduleNotification(Pill pill) {
         Intent notificationIntent = new Intent(this, AlarmReceiver.class);
 
-        notificationIntent.putExtra("pill.id",pill.id);
+        /*notificationIntent.putExtra("pill.id",pill.id);
         notificationIntent.putExtra("pill.name",pill.name);
         notificationIntent.putExtra("pill.drinked",pill.drinked);
-        notificationIntent.putExtra("pill.date",pill.date);
+        notificationIntent.putExtra("pill.date",pill.date);*/
+        /*ParcelablePill parcelablePill = new ParcelablePill();
+        parcelablePill.id=pill.id;
+        parcelablePill.date=pill.date;
+        parcelablePill.drinked=pill.drinked;
+        parcelablePill.name=pill.name;*/
+
+        notificationIntent.putExtra("pillForNotification",pill);
 
         PendingIntent broadcast = PendingIntent.getBroadcast(this, Integer.parseInt(pill.id), notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
