@@ -1,17 +1,16 @@
 package com.fiuba.proyectosinformaticos.oupa.services;
 
-import android.util.Log;
-import android.widget.Toast;
+import android.support.annotation.NonNull;
 
-import com.fiuba.proyectosinformaticos.oupa.UserManager;
+import com.fiuba.proyectosinformaticos.oupa.UserSessionManager;
+import com.fiuba.proyectosinformaticos.oupa.model.UserLogged;
 import com.fiuba.proyectosinformaticos.oupa.model.UserSession;
 import com.fiuba.proyectosinformaticos.oupa.model.request.UserSessionRequest;
 import com.fiuba.proyectosinformaticos.oupa.networking.ApiClient;
 import com.fiuba.proyectosinformaticos.oupa.networking.OupaApi;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class UserService {
 
@@ -21,30 +20,27 @@ public class UserService {
         oupaApi = ApiClient.getInstance().getOupaClient();
     }
 
-    public void createUserSession(String email, String password, String deviceToken) {
+    public Call<UserSession> createUserSession(String email, String password) {
 
+        String deviceToken = FirebaseInstanceId.getInstance().getToken();
+
+        UserSessionRequest userSessionRequest = getUserSessionRequest(email, password, deviceToken);
+
+        return oupaApi.createUserSession(userSessionRequest);
+    }
+
+    public Call<UserLogged> getUserLogged(String accessToken) {
+        return oupaApi.getUserLogged(accessToken);
+    }
+
+    @NonNull
+    private UserSessionRequest getUserSessionRequest(String email, String password, String deviceToken) {
         UserSessionRequest userSessionRequest = new UserSessionRequest();
         userSessionRequest.session = new UserSessionRequest.Session();
         userSessionRequest.session.email = email;
         userSessionRequest.session.password = password;
         userSessionRequest.session.deviceToken = deviceToken;
         userSessionRequest.session.deviceType = "android";
-
-         oupaApi.createUserSession(userSessionRequest).enqueue(new Callback<UserSession>() {
-             @Override
-             public void onResponse(Call<UserSession> call, Response<UserSession> response) {
-                 if (response.code() > 199 && response.code() < 300) {
-                     Log.i("Session created", response.body().accessToken);
-                     UserManager.getInstance().setUserSession(response.body());
-                 } else {
-                     Log.e("createUserSession", response.message());
-                 }
-             }
-
-             @Override
-             public void onFailure(Call<UserSession> call, Throwable t) {
-                 Log.e("createUserSession", t.getMessage());
-             }
-         });
+        return userSessionRequest;
     }
 }

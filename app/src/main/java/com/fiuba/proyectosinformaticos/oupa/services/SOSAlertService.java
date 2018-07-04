@@ -1,8 +1,10 @@
 package com.fiuba.proyectosinformaticos.oupa.services;
 
+import android.os.UserManager;
 import android.util.Log;
 
-import com.fiuba.proyectosinformaticos.oupa.UserManager;
+import com.fiuba.proyectosinformaticos.oupa.App;
+import com.fiuba.proyectosinformaticos.oupa.UserSessionManager;
 import com.fiuba.proyectosinformaticos.oupa.networking.ApiClient;
 import com.fiuba.proyectosinformaticos.oupa.networking.OupaApi;
 
@@ -18,7 +20,8 @@ public class SOSAlertService {
     }
 
     public void sendSOSAlert() {
-        oupaApi.createSOSAlert(UserManager.getInstance().getAuthorizationToken()).enqueue(new Callback<Void>() {
+        String accessToken = new UserSessionManager(App.getContext()).getAuthorizationToken();
+        oupaApi.createSOSAlert(accessToken).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.code() > 199 && response.code() < 300) {

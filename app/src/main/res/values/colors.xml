@@ -10,6 +10,7 @@
     <color name="redparent">#a4d50000</color>
     <color name="bluetransparent">#b901579b</color>
     <color name="greenMaterial">#009688</color>
+    <color name="black">#000000</color>
     <!--colores develop-->
     <color name="panic">#ff0004</color>
     <color name="green">#81c784</color>

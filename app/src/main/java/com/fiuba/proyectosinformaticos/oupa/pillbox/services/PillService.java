@@ -1,9 +1,9 @@
 package com.fiuba.proyectosinformaticos.oupa.pillbox.services;
 
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.fiuba.proyectosinformaticos.oupa.UserManager;
+import com.fiuba.proyectosinformaticos.oupa.App;
+import com.fiuba.proyectosinformaticos.oupa.UserSessionManager;
 import com.fiuba.proyectosinformaticos.oupa.networking.ApiClient;
 import com.fiuba.proyectosinformaticos.oupa.networking.OupaApi;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.NewPillStep4;
@@ -13,7 +13,6 @@ import com.fiuba.proyectosinformaticos.oupa.pillbox.model.Pill;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,7 +42,9 @@ public class PillService {
         pillSerialized.personal_medicine_reminder.date = sdf.format(pill.date);
         pillSerialized.personal_medicine_reminder.time = hourdf.format(pill.date);
 
-        oupaApi.createPill(UserManager.getInstance().getAuthorizationToken(),"application/json",pillSerialized).enqueue(new Callback<Void>() {
+        String accessToken = new UserSessionManager(delegate.getApplicationContext()).getAuthorizationToken();
+
+        oupaApi.createPill(accessToken,"application/json",pillSerialized).enqueue(new Callback<Void>() {
 
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -65,7 +66,8 @@ public class PillService {
     }
 
     public void getPillsForToday(final PillboxActivity delegate) {
-        oupaApi.getPillsForToday(UserManager.getInstance().getAuthorizationToken()).enqueue(new Callback<ArrayList<PillResponse>>() {
+        String accessToken = new UserSessionManager(delegate.getApplicationContext()).getAuthorizationToken();
+        oupaApi.getPillsForToday(accessToken).enqueue(new Callback<ArrayList<PillResponse>>() {
             @Override
             public void onResponse(Call<ArrayList<PillResponse>> call, Response<ArrayList<PillResponse>> response) {
                 if (response.code() > 199 && response.code() < 300) {
@@ -99,7 +101,8 @@ public class PillService {
         pillTakenSerialized.personal_medicine_reminder = new PillTakenSerialized.Personal_medicine_reminder();
         pillTakenSerialized.personal_medicine_reminder.taken = pill.drinked;
 
-        oupaApi.drinkedPill(UserManager.getInstance().getAuthorizationToken(),pill.id,pillTakenSerialized).enqueue(new Callback<PillResponse>() {
+        String accessToken = new UserSessionManager(App.getContext()).getAuthorizationToken();
+        oupaApi.drinkedPill(accessToken, pill.id, pillTakenSerialized).enqueue(new Callback<PillResponse>() {
 
             @Override
             public void onResponse(Call<PillResponse> call, Response<PillResponse> response) {
