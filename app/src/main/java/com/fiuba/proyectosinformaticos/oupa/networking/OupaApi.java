@@ -1,5 +1,6 @@
 package com.fiuba.proyectosinformaticos.oupa.networking;
 
+import com.fiuba.proyectosinformaticos.oupa.model.UserLogged;
 import com.fiuba.proyectosinformaticos.oupa.model.UserSession;
 import com.fiuba.proyectosinformaticos.oupa.model.request.UserSessionRequest;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.model.Pill;
@@ -33,5 +34,8 @@ public interface OupaApi {
 
     @POST("/users/sessions")
     Call<UserSession> createUserSession(@Body UserSessionRequest sessionRequest);
+
+    @GET("/users/logged_in")
+    Call<UserLogged> getUserLogged(@Header("Authorization") String accessToken);
 
 }

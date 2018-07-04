@@ -1,8 +1,9 @@
 package com.fiuba.proyectosinformaticos.oupa.activities;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
@@ -14,14 +15,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.fiuba.proyectosinformaticos.oupa.Flashlight;
 import com.fiuba.proyectosinformaticos.oupa.R;
-import com.fiuba.proyectosinformaticos.oupa.UserManager;
+import com.fiuba.proyectosinformaticos.oupa.UserSessionManager;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.PillboxActivity;
 import com.google.firebase.iid.FirebaseInstanceId;
 
@@ -31,16 +30,17 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private UserSessionManager userSessionManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //create session for a default user
-        UserManager.getInstance().logUser();
-
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        userSessionManager = new UserSessionManager(this);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity
         attachEvents();
 
         Log.i(getClass().getCanonicalName(), "Firebase token: " + FirebaseInstanceId.getInstance().getToken());
-
     }
 
     private void attachEvents() {
@@ -149,6 +148,10 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
+        menu.getItem(0).setTitle(userSessionManager.getFullName());
+        menu.getItem(1).setIcon(ContextCompat.getDrawable(this, R.drawable.close));
+
         return true;
     }
 
@@ -160,7 +163,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.logout) {
+            userSessionManager.logout();
             return true;
         }
 
