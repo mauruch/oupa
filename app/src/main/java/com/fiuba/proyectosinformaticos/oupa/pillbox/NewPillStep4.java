@@ -22,13 +22,14 @@ import com.fiuba.proyectosinformaticos.oupa.pillbox.model.OUPADateFormat;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.model.ParcelablePill;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.model.Pill;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillClient;
+import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillResponse;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillService;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class NewPillStep4 extends AppCompatActivity implements PillClient{
+public class NewPillStep4 extends AppCompatActivity implements PillClient {
 
     private  Pill pill;
     public static final int STEP_CODE = 400;
@@ -70,12 +71,10 @@ public class NewPillStep4 extends AppCompatActivity implements PillClient{
         pillService.createNewPill(pill,this);
     }
 
-    @Override
     public void onResponseSuccess(Object responseBody) {
 
-        Pill pill = (Pill) responseBody;
-
-        scheduleNotification(pill);
+        PillResponse pillResponse = (PillResponse) responseBody;
+        scheduleNotification(pillResponse.id);
 
         ProgressBar loadingView = (ProgressBar) findViewById(R.id.loading);
         loadingView.setVisibility(View.INVISIBLE);
@@ -85,31 +84,20 @@ public class NewPillStep4 extends AppCompatActivity implements PillClient{
         finish();
     }
 
-    public void scheduleNotification(Pill pill) {
-        Intent notificationIntent = new Intent(this, AlarmReceiver.class);
+    public void scheduleNotification(String pillId) {
+        Intent notificationIntent = new Intent(this, NewPillStep4.class);
 
-        /*notificationIntent.putExtra("pill.id",pill.id);
-        notificationIntent.putExtra("pill.name",pill.name);
-        notificationIntent.putExtra("pill.drinked",pill.drinked);
-        notificationIntent.putExtra("pill.date",pill.date);*/
-        /*ParcelablePill parcelablePill = new ParcelablePill();
-        parcelablePill.id=pill.id;
-        parcelablePill.date=pill.date;
-        parcelablePill.drinked=pill.drinked;
-        parcelablePill.name=pill.name;*/
-
+        //deberia ser pill
         notificationIntent.putExtra("pillForNotification",pill);
-
-        PendingIntent broadcast = PendingIntent.getBroadcast(this, Integer.parseInt(pill.id), notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Calendar cal = Calendar.getInstance();
         cal.setTime(pill.date);
         cal.add(Calendar.MINUTE, -10);
-        //cal.add(Calendar.SECOND,20);
-
-        Log.i("PILLSALARM","Pildora: "+pill.name+" Hora de la alarma: "+cal.getTime());
 
         AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+
+        PendingIntent broadcast = PendingIntent.getBroadcast(this, Integer.parseInt(pillId), notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        Log.i("PILLSALARM","Pildora: "+pill.name+" Hora de la alarma: "+cal.getTime());
 
         alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), broadcast);
     }

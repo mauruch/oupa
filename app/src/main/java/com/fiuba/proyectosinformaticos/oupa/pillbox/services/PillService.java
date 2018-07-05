@@ -43,13 +43,13 @@ public class PillService {
         pillSerialized.personal_medicine_reminder.date = sdf.format(pill.date);
         pillSerialized.personal_medicine_reminder.time = hourdf.format(pill.date);
 
-        oupaApi.createPill(UserManager.getInstance().getAuthorizationToken(),"application/json",pillSerialized).enqueue(new Callback<Void>() {
+        oupaApi.createPill(UserManager.getInstance().getAuthorizationToken(),"application/json",pillSerialized).enqueue(new Callback<PillResponse>() {
 
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
+            public void onResponse(Call<PillResponse> call, Response<PillResponse> response) {
                 if (response.code() > 199 && response.code() < 300) {
                     Log.i("PILLSERVICE", "NEW PILL CREATED!!!");
-                    delegate.onResponseSuccess(pill);
+                    delegate.onResponseSuccess(response.body());
                 } else {
                     Log.e("PILLSERVICE", response.body().toString());
                     delegate.onResponseError();
@@ -57,7 +57,7 @@ public class PillService {
             }
 
             @Override
-            public void onFailure(Call<Void> call, Throwable t) {
+            public void onFailure(Call<PillResponse> call, Throwable t) {
                 Log.e("PILLSERVICE", t.getMessage());
                 delegate.onResponseError();
             }
