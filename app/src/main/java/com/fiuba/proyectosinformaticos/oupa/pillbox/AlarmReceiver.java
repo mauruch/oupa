@@ -26,7 +26,6 @@ public class AlarmReceiver extends BroadcastReceiver{
     @Override
     public void onReceive(Context context, Intent intent) {
 
-
         Bundle args = intent.getBundleExtra("DATA");
         Pill pill = (Pill) args.getSerializable("pillForNotification");
 
@@ -35,17 +34,14 @@ public class AlarmReceiver extends BroadcastReceiver{
 
         pill.date=(Date) intent.getSerializableExtra("pill.date");
 
-        //ParcelablePill parcelablePill = (ParcelablePill) intent.getParcelableExtra("pillForNotification") ;
 
         // Create an explicit intent for an Activity in your app
         Intent drinkedPillIntent = new Intent(context, DrinkedPillActivity.class);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
         stackBuilder.addNextIntentWithParentStack(drinkedPillIntent);
 
-        drinkedPillIntent.putExtra("pillFromAlarm",pill);
+        drinkedPillIntent.putExtra("pill",pill);
 
-        //drinkedPillIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        //PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, drinkedPillIntent, 0);
         PendingIntent pendingIntent =
                 stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 

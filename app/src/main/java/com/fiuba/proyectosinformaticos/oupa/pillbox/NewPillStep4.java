@@ -90,10 +90,10 @@ public class NewPillStep4 extends AppCompatActivity implements PillClient {
     public void scheduleNotification(String pillId) {
         Intent notificationIntent = new Intent(this, AlarmReceiver.class);
 
-        //deberia ser pill
-        //notificationIntent.putExtra("pillForNotification",pill);
-
+        pill.id = pillId;
         Bundle args = new Bundle();
+
+        //TODO: deberia ser pill
         args.putSerializable("pillForNotification",pill);
         notificationIntent.putExtra("DATA",args);
 
