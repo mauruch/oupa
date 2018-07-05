@@ -25,9 +25,12 @@ import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillClient;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillResponse;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillService;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import static android.content.Intent.FLAG_ACTIVITY_FORWARD_RESULT;
 
 public class NewPillStep4 extends AppCompatActivity implements PillClient {
 
@@ -85,10 +88,14 @@ public class NewPillStep4 extends AppCompatActivity implements PillClient {
     }
 
     public void scheduleNotification(String pillId) {
-        Intent notificationIntent = new Intent(this, NewPillStep4.class);
+        Intent notificationIntent = new Intent(this, AlarmReceiver.class);
 
         //deberia ser pill
-        notificationIntent.putExtra("pillForNotification",pill);
+        //notificationIntent.putExtra("pillForNotification",pill);
+
+        Bundle args = new Bundle();
+        args.putSerializable("pillForNotification",pill);
+        notificationIntent.putExtra("DATA",args);
 
         Calendar cal = Calendar.getInstance();
         cal.setTime(pill.date);

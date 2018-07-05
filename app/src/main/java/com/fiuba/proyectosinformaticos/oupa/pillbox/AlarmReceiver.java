@@ -4,6 +4,7 @@ package com.fiuba.proyectosinformaticos.oupa.pillbox;
 import android.app.PendingIntent;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.app.TaskStackBuilder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -25,16 +26,13 @@ public class AlarmReceiver extends BroadcastReceiver{
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        /*String idPastilla = intent.getStringExtra("pill.id");
-        Log.i("Pastillas",""+idPastilla);
-        Pill pill = (Pill) intent.getSerializableExtra("pillForNotification");
-        Log.i("Pastillas",""+pill.id);*/
 
-        /**TODO Por alguna razon no pude mandar un objeto Pill*/
-        Pill pill = new Pill();
-        pill.id=intent.getStringExtra("pill.id");
-        pill.name=intent.getStringExtra("pill.name");
-        pill.drinked=intent.getBooleanExtra("pill.drinked",false);
+        Bundle args = intent.getBundleExtra("DATA");
+        Pill pill = (Pill) args.getSerializable("pillForNotification");
+
+        Log.i("Pastillas",""+pill.id);
+
+
         pill.date=(Date) intent.getSerializableExtra("pill.date");
 
         //ParcelablePill parcelablePill = (ParcelablePill) intent.getParcelableExtra("pillForNotification") ;
