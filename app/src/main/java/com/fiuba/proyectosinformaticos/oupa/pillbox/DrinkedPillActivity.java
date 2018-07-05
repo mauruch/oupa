@@ -24,8 +24,7 @@ public class DrinkedPillActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //final ParcelablePill pill = (ParcelablePill) getIntent().getParcelableExtra("pill");
-        final Pill pill = (Pill) getIntent().getSerializableExtra("pillFromAlarm");
+        final Pill pill = (Pill) getIntent().getSerializableExtra("pill");
 
         String title = "Tomar " + pill.name;
 

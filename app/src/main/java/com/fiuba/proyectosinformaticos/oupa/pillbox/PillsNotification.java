@@ -80,31 +80,17 @@ public class PillsNotification implements PillClient {
     public void scheduleNotification(Pill pill) {
         Intent notificationIntent = new Intent(mainActivity, AlarmReceiver.class);
 
-        notificationIntent.putExtra("pill.id",pill.id);
-        notificationIntent.putExtra("pill.name",pill.name);
-        notificationIntent.putExtra("pill.drinked",pill.drinked);
-        notificationIntent.putExtra("pill.date",pill.date);
-
-        /*ParcelablePill parcelablePill = new ParcelablePill();
-        parcelablePill.id=pill.id;
-        parcelablePill.date=pill.date;
-        parcelablePill.drinked=pill.drinked;
-        parcelablePill.name=pill.name;
-
-        notificationIntent.putExtra("pillForNotification",parcelablePill);*/
+        notificationIntent.putExtra("pillForNotification",pill);
 
         PendingIntent broadcast = PendingIntent.getBroadcast(mainActivity, Integer.parseInt(pill.id), notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Calendar cal = Calendar.getInstance();
         cal.setTime(pill.date);
         cal.add(Calendar.MINUTE, -10);
-        //TODO Esto esta puesto para generar las notificaciones en momentos random, entre 5 y 20 segundos. SOLO PARA TESTING
-        //int randomNum = 5 + (int)(Math.random() * ((20 - 5) + 1));
-        //cal.add(Calendar.SECOND,randomNum);
 
         Log.i("PILLSALARM","Pildora: "+pill.name+" Hora de la alarma: "+cal.getTime());
 
-        alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), broadcast);
+       alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), broadcast);
     }
 
     public void onResponseError() {
