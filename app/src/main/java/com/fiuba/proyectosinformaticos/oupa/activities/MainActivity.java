@@ -1,6 +1,9 @@
 package com.fiuba.proyectosinformaticos.oupa.activities;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
@@ -21,7 +24,9 @@ import android.widget.TextView;
 import com.fiuba.proyectosinformaticos.oupa.Flashlight;
 import com.fiuba.proyectosinformaticos.oupa.R;
 import com.fiuba.proyectosinformaticos.oupa.UserSessionManager;
+import com.fiuba.proyectosinformaticos.oupa.pillbox.AlarmReceiver;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.PillboxActivity;
+import com.fiuba.proyectosinformaticos.oupa.pillbox.PillsNotification;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.text.SimpleDateFormat;
@@ -66,10 +71,54 @@ public class MainActivity extends AppCompatActivity
         TextView dayWeek = findViewById(R.id.day_week);
         dayWeek.setText(formatDate.format(new Date()));
 
+        createNotificationChannel();
+
         attachEvents();
 
         Log.i(getClass().getCanonicalName(), "Firebase token: " + FirebaseInstanceId.getInstance().getToken());
+
+        setUpPillsNotification();
+
     }
+
+    private void setUpPillsNotification() {
+
+        final PillsNotification pillsNotification = new PillsNotification(this);
+
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    while(true &&  UserManager.getInstance().getAuthorizationToken()==null) {
+                        sleep(1000);
+                    }
+                    pillsNotification.scheduleNotifications();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        thread.start();
+
+    }
+
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = getString(R.string.channel_name);
+            String description = getString(R.string.channel_description);
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel(AlarmReceiver.CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
 
     private void attachEvents() {
 

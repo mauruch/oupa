@@ -25,7 +25,7 @@ public class PillService {
         oupaApi = ApiClient.getInstance().getOupaClient();
     }
 
-    public void createNewPill(Pill pill, final NewPillStep4 delegate) {
+    public void createNewPill(final Pill pill, final NewPillStep4 delegate) {
 
         PillSerialized pillSerialized = new PillSerialized();
         pillSerialized.personal_medicine_reminder = new PillSerialized.Personal_medicine_reminder();
@@ -44,13 +44,13 @@ public class PillService {
 
         String accessToken = new UserSessionManager(delegate.getApplicationContext()).getAuthorizationToken();
 
-        oupaApi.createPill(accessToken,"application/json",pillSerialized).enqueue(new Callback<Void>() {
+        oupaApi.createPill(accessToken,"application/json",pillSerialized).enqueue(new Callback<PillResponse>() {
 
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
+            public void onResponse(Call<PillResponse> call, Response<PillResponse> response) {
                 if (response.code() > 199 && response.code() < 300) {
                     Log.i("PILLSERVICE", "NEW PILL CREATED!!!");
-                    delegate.onResponseSuccess();
+                    delegate.onResponseSuccess(response.body());
                 } else {
                     Log.e("PILLSERVICE", response.body().toString());
                     delegate.onResponseError();
@@ -58,14 +58,14 @@ public class PillService {
             }
 
             @Override
-            public void onFailure(Call<Void> call, Throwable t) {
+            public void onFailure(Call<PillResponse> call, Throwable t) {
                 Log.e("PILLSERVICE", t.getMessage());
                 delegate.onResponseError();
             }
         });
     }
 
-    public void getPillsForToday(final PillboxActivity delegate) {
+    public void getPillsForToday(final PillClient delegate) {
         String accessToken = new UserSessionManager(delegate.getApplicationContext()).getAuthorizationToken();
         oupaApi.getPillsForToday(accessToken).enqueue(new Callback<ArrayList<PillResponse>>() {
             @Override

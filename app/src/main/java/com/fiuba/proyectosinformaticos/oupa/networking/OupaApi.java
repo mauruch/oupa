@@ -24,7 +24,7 @@ public interface OupaApi {
     Call<Void> createSOSAlert(@Header("Authorization") String accessToken);
 
     @POST("/personal_medicine_reminder")
-    Call<Void> createPill(@Header("Authorization") String accessToken, @Header("Content-Type") String content_type, @Body PillSerialized pillSerialized);
+    Call<PillResponse> createPill(@Header("Authorization") String accessToken, @Header("Content-Type") String content_type, @Body PillSerialized pillSerialized);
 
     @GET("/personal_medicine_reminder")
     Call<ArrayList<PillResponse>> getPillsForToday(@Header("Authorization") String accessToken);

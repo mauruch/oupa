@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.fiuba.proyectosinformaticos.oupa.R;
+import com.fiuba.proyectosinformaticos.oupa.pillbox.model.ParcelablePill;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.model.Pill;
 
 public class DrinkedPillActivity extends AppCompatActivity {
@@ -24,6 +25,7 @@ public class DrinkedPillActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         final Pill pill = (Pill) getIntent().getSerializableExtra("pill");
+
         String title = "Tomar " + pill.name;
 
         TextView hourTextView = (TextView) findViewById(R.id.pillTitle);
