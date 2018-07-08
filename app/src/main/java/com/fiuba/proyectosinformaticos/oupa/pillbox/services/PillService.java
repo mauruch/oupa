@@ -1,5 +1,6 @@
 package com.fiuba.proyectosinformaticos.oupa.pillbox.services;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.fiuba.proyectosinformaticos.oupa.App;
@@ -7,7 +8,6 @@ import com.fiuba.proyectosinformaticos.oupa.UserSessionManager;
 import com.fiuba.proyectosinformaticos.oupa.networking.ApiClient;
 import com.fiuba.proyectosinformaticos.oupa.networking.OupaApi;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.NewPillStep4;
-import com.fiuba.proyectosinformaticos.oupa.pillbox.PillboxActivity;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.model.OUPADateFormat;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.model.Pill;
 
@@ -96,12 +96,12 @@ public class PillService {
         });
     }
 
-    public void updatePillDrinked(final Pill pill){
+    public void updatePillDrinked(Context applicationContext, final Pill pill){
         PillTakenSerialized pillTakenSerialized = new PillTakenSerialized();
         pillTakenSerialized.personal_medicine_reminder = new PillTakenSerialized.Personal_medicine_reminder();
         pillTakenSerialized.personal_medicine_reminder.taken = pill.drinked;
 
-        String accessToken = new UserSessionManager(App.getContext()).getAuthorizationToken();
+        String accessToken = new UserSessionManager(applicationContext).getAuthorizationToken();
         oupaApi.drinkedPill(accessToken, pill.id, pillTakenSerialized).enqueue(new Callback<PillResponse>() {
 
             @Override
