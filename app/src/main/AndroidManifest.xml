@@ -26,9 +26,7 @@
             android:name=".activities.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".pillbox.PillboxActivity"
             android:label="@string/title_activity_pillbox"
@@ -37,9 +35,9 @@
         <activity
             android:name=".pillbox.DrinkedPillActivity"
             android:label="@string/title_activity_drinked_pill"
+            android:parentActivityName=".pillbox.PillboxActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".pillbox.PillboxActivity" />
+            android:theme="@style/AppTheme.NoActionBar" />
         />
         <activity
             android:name=".pillbox.NewPillStep1"
@@ -75,15 +73,18 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <receiver android:name=".pillbox.AlarmReceiver">
+        <receiver android:name=".pillbox.AlarmReceiver"></receiver>
 
-        </receiver>
-
+        <activity
+            android:name=".measurement.MeasurementListActivity"
+            android:label="@string/title_activity_measurement_list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -24,6 +24,7 @@ import android.widget.TextView;
 import com.fiuba.proyectosinformaticos.oupa.Flashlight;
 import com.fiuba.proyectosinformaticos.oupa.R;
 import com.fiuba.proyectosinformaticos.oupa.UserSessionManager;
+import com.fiuba.proyectosinformaticos.oupa.measurement.MeasurementListActivity;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.AlarmReceiver;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.PillboxActivity;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.PillsNotification;
@@ -166,6 +167,14 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        LinearLayout measurementLayout = findViewById(R.id.mesuraments_layout);
+        measurementLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent measurementIntent = new Intent(MainActivity.this, MeasurementListActivity.class);
+                MainActivity.this.startActivity(measurementIntent);
+            }
+        });
     }
 
 
