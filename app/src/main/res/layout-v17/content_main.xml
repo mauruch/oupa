@@ -20,45 +20,45 @@
             android:textStyle="bold"
             android:layout_height="80dp" />
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:orientation="horizontal" android:layout_width="match_parent"
-            android:layout_height="150dp">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal" android:layout_width="match_parent"
+        android:layout_height="150dp">
 
-            <ImageButton
-                android:id="@+id/btn_phone"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:src="@drawable/telefono"
-                android:layout_weight="1"/>
+        <ImageButton
+            android:id="@+id/btn_phone"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@drawable/telefono"
+            android:layout_weight="1"/>
 
-            <ImageButton
-                android:id="@+id/btn_sos"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:src="@drawable/sos"
-                android:layout_weight="1"/>
+        <ImageButton
+            android:id="@+id/btn_sos"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@drawable/sos"
+            android:layout_weight="1"/>
 
-        </LinearLayout>
+    </LinearLayout>
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:orientation="horizontal" android:layout_width="match_parent"
-            android:layout_height="150dp">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal" android:layout_width="match_parent"
+        android:layout_height="150dp">
 
-            <ImageButton
-                android:id="@+id/btn_camera"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:src="@drawable/camera"
-                android:layout_weight="1"/>
+        <ImageButton
+            android:id="@+id/btn_camera"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@drawable/camera"
+            android:layout_weight="1"/>
 
-            <ImageButton
-                android:id="@+id/btn_gallery"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:src="@drawable/gallery"
-                android:layout_weight="1"/>
+        <ImageButton
+            android:id="@+id/btn_gallery"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@drawable/gallery"
+            android:layout_weight="1"/>
 
-        </LinearLayout>
+    </LinearLayout>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:orientation="horizontal" android:layout_width="match_parent"
@@ -79,6 +79,8 @@
                 android:layout_weight="1"/>
 
         </LinearLayout>
+
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
