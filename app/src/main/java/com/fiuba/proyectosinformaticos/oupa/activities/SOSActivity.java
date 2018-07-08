@@ -1,17 +1,15 @@
 package com.fiuba.proyectosinformaticos.oupa.activities;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.fiuba.proyectosinformaticos.oupa.CountDownTimer;
 import com.fiuba.proyectosinformaticos.oupa.R;
+import com.fiuba.proyectosinformaticos.oupa.services.SOSAlertService;
 
 public class SOSActivity extends AppCompatActivity {
 
@@ -21,11 +19,18 @@ public class SOSActivity extends AppCompatActivity {
     private Button cancelSOSButton;
     private Button redirectButton;
     private CountDownTimer countDownTimer;
+    private View.OnClickListener goHomeListener = goHomeListener();
+
+    private SOSAlertService alertService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        alertService = new SOSAlertService();
+
         setContentView(R.layout.activity_sos);
+
+        getSupportActionBar().hide();
 
         titleText = findViewById(R.id.titleText);
         infoText = findViewById(R.id.infoText);
@@ -55,61 +60,27 @@ public class SOSActivity extends AppCompatActivity {
 
                 infoText.setVisibility(View.VISIBLE);
                 redirectButton.setVisibility(View.VISIBLE);
+
+                //send alert against server.
+                alertService.sendSOSAlert();
             }
         };
     }
 
     private void attachEvents() {
+        cancelSOSButton.setOnClickListener(goHomeListener);
+        redirectButton.setOnClickListener(goHomeListener);
+    }
 
-        cancelSOSButton.setOnClickListener(new View.OnClickListener() {
+    private View.OnClickListener goHomeListener() {
+        return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                countDownTimer.pause();
-
-                final AlertDialog alertDialog = new AlertDialog.Builder(SOSActivity.this)
-                        .setMessage("¿Seguro que desea cancelar el pedido de ayuda?")
-                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
-                                finish();
-                                startActivity(mainActivity);
-                            }
-
-                        })
-
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int which) {
-                                dialogInterface.dismiss();
-                                countDownTimer.resume();
-                            }
-                        }).show();
-
-                Button negativeButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
-                // override the text color of negative button
-                negativeButton.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
-                negativeButton.setTextSize(25);
-
-                Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
-                // override the text color of positive button
-                positiveButton.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
-                positiveButton.setTextSize(25);
-
-                TextView dialogMessage = alertDialog.findViewById(android.R.id.message);
-                dialogMessage.setTextSize(25);
-
-            }
-        });
-
-        redirectButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+                countDownTimer.cancel();
                 Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
                 finish();
                 startActivity(mainActivity);
             }
-        });
+        };
     }
 }

@@ -6,4 +6,35 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_pillbox">PillboxActivity</string>
+    <string name="title_activity_drinked_pill">DrinkedPillActivity</string>
+    <string name="title_activity_new_pill_step1">NewPillStep1</string>
+    <string name="today_pills_title">Medicinas de hoy</string>
+    <string name="new_pill_title">Nueva medicina</string>
+    <string name="select_day_title">Seleccione día</string>
+    <string name="continue_button">Continuar</string>
+    <string name="confirm_button">Confirmar</string>
+    <string name="select_date">Seleccionar fecha</string>
+    <string name="select_hour">Seleccionar hora</string>
+    <string name="selected_date">Fecha y hora seleccionadas: </string>
+    <string name="add_pill_description">Se agregará la pastilla</string>
+    <string name="title_activity_new_pill_step2">NewPillStep2</string>
+    <string name="title_activity_new_pill_step4">NewPillStep4</string>
+    <string name="title_activity_notification">NotificationActivity</string>
+    <string name="channel_name">Pills Notification</string>
+    <string name="channel_description">Notification Channel for Pills Alarm</string>
+    <string name="pill_notification_content_title">"Notificación de Oupa"</string>
+    <string name="pill_notification_content_text">Usted tiene que tomar una pastilla</string>
+    <string name="title_activity_login">Inicie sesion</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Correo electrónico</string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="action_sign_in">Ingresar</string>
+    <string name="action_sign_in_short">Continuar</string>
+    <string name="error_invalid_email">Correo electrónico inválido</string>
+    <string name="error_invalid_password">La contraseña es muy corta</string>
+    <string name="error_incorrect_password">La contraseña es incorrecta</string>
+    <string name="error_field_required">Campo requerido</string>
+
 </resources>
