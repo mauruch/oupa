@@ -4,6 +4,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 
 import android.widget.Toast;
@@ -80,7 +81,10 @@ public class PillsNotification implements PillClient {
     public void scheduleNotification(Pill pill) {
         Intent notificationIntent = new Intent(mainActivity, AlarmReceiver.class);
 
-        notificationIntent.putExtra("pillForNotification",pill);
+        Bundle args = new Bundle();
+
+        args.putSerializable("pillForNotification",pill);
+        notificationIntent.putExtra("DATA",args);
 
         PendingIntent broadcast = PendingIntent.getBroadcast(mainActivity, Integer.parseInt(pill.id), notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
@@ -90,13 +94,18 @@ public class PillsNotification implements PillClient {
 
         Log.i("PILLSALARM","Pildora: "+pill.name+" Hora de la alarma: "+cal.getTime());
 
-       alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), broadcast);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), broadcast);
     }
 
     public void onResponseError() {
         Toast.makeText(mainActivity, "Se produjo un error de conexión en el pastillero, intente luego",
                 Toast.LENGTH_LONG).show();
 
+    }
+
+    @Override
+    public Context getApplicationContext() {
+        return this.mainActivity.getApplicationContext();
     }
 
 

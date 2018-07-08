@@ -41,10 +41,10 @@ public class AlarmReceiver extends BroadcastReceiver{
         stackBuilder.addNextIntentWithParentStack(drinkedPillIntent);
 
         drinkedPillIntent.putExtra("pill",pill);
+        drinkedPillIntent.putExtra("comingFromNotification",true);
 
         PendingIntent pendingIntent =
                 stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, CHANNEL_ID);
         mBuilder.setSmallIcon(R.drawable.pill_notification);

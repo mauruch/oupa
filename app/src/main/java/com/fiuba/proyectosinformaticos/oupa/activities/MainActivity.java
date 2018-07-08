@@ -85,21 +85,7 @@ public class MainActivity extends AppCompatActivity
 
         final PillsNotification pillsNotification = new PillsNotification(this);
 
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    while(true &&  UserManager.getInstance().getAuthorizationToken()==null) {
-                        sleep(1000);
-                    }
-                    pillsNotification.scheduleNotifications();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        thread.start();
+        pillsNotification.scheduleNotifications();
 
     }
 
