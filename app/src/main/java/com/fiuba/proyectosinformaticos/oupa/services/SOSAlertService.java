@@ -1,6 +1,5 @@
 package com.fiuba.proyectosinformaticos.oupa.services;
 
-import android.os.UserManager;
 import android.util.Log;
 
 import com.fiuba.proyectosinformaticos.oupa.App;
