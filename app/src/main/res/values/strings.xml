@@ -11,6 +11,9 @@
     <string name="title_activity_new_pill_step1">NewPillStep1</string>
     <string name="today_pills_title">Medicinas de hoy</string>
     <string name="new_pill_title">Nueva medicina</string>
+    <string name="new_contact_title">Nuevo contacto</string>
+    <string name="title_activity_new_contact">NewContact</string>
+
     <string name="select_day_title">Seleccione día</string>
     <string name="continue_button">Continuar</string>
     <string name="confirm_button">Confirmar</string>

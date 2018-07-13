@@ -1,5 +1,7 @@
 package com.fiuba.proyectosinformaticos.oupa.networking;
 
+import com.fiuba.proyectosinformaticos.oupa.contacts.services.ContactResponse;
+import com.fiuba.proyectosinformaticos.oupa.contacts.services.ContactSerialized;
 import com.fiuba.proyectosinformaticos.oupa.model.UserLogged;
 import com.fiuba.proyectosinformaticos.oupa.model.UserSession;
 import com.fiuba.proyectosinformaticos.oupa.model.request.UserSessionRequest;
@@ -38,4 +40,9 @@ public interface OupaApi {
     @GET("/users/logged_in")
     Call<UserLogged> getUserLogged(@Header("Authorization") String accessToken);
 
+    @POST("/contacts")
+    Call<ContactResponse> createContact(@Header("Authorization") String accessToken, @Header("Content-Type") String s, @Body ContactSerialized contactSerialized);
+
+    @GET("/contacts")
+    Call<ArrayList<ContactResponse>> getContacts(@Header("Authorization") String accessToken);
 }
