@@ -8,4 +8,16 @@
     tools:context=".measurement.MeasurementListActivity"
     tools:showIn="@layout/activity_measurement_list">
 
+    <ListView
+        android:id="@+id/list_of_measurements"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/fab"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="16dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
 </android.support.constraint.ConstraintLayout>

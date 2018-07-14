@@ -48,5 +48,7 @@
     <string name="measurement_type_preasure">Presión</string>
     <string name="title_measurement_step2">Resultado obtenido:</string>
 
+    <string name="measurement_list_title">Mediciones</string>
+
 
 </resources>

@@ -63,6 +63,8 @@ public class NewMeasurementStep1 extends AppCompatActivity {
         intent.addFlags(FLAG_ACTIVITY_FORWARD_RESULT);
         intent.putExtra("measurement", measurement);
         startActivity(intent);
+        finish();
+
     }
 
 }

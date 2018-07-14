@@ -1,5 +1,6 @@
 package com.fiuba.proyectosinformaticos.oupa.networking;
 
+import com.fiuba.proyectosinformaticos.oupa.measurement.model.Measurement;
 import com.fiuba.proyectosinformaticos.oupa.measurement.services.MeasurementSerialized;
 import com.fiuba.proyectosinformaticos.oupa.model.UserLogged;
 import com.fiuba.proyectosinformaticos.oupa.model.UserSession;
@@ -42,5 +43,6 @@ public interface OupaApi {
     @POST("/measurements")
     Call<MeasurementSerialized> createMeasurement(@Header("Authorization") String accessToken, @Header("Content-Type") String content_type, @Body MeasurementSerialized pillSerialized);
 
-
+    @GET("/measurements")
+    Call<ArrayList<MeasurementSerialized.Measurement>> getMeasurements(@Header("Authorization") String accessToken);
 }

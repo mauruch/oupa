@@ -1,5 +1,6 @@
 package com.fiuba.proyectosinformaticos.oupa.measurement;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,14 +14,20 @@ import android.widget.Toast;
 import com.fiuba.proyectosinformaticos.oupa.R;
 import com.fiuba.proyectosinformaticos.oupa.measurement.model.Measurement;
 import com.fiuba.proyectosinformaticos.oupa.measurement.services.MeasurementService;
+import com.fiuba.proyectosinformaticos.oupa.pillbox.NewPillStep4;
+import com.fiuba.proyectosinformaticos.oupa.pillbox.PillboxActivity;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillService;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import static com.fiuba.proyectosinformaticos.oupa.pillbox.NewPillStep2.STEP_CODE;
 
 public class NewMeasurementStep2 extends AppCompatActivity {
 
     private Measurement measurement;
     private MeasurementService measurementService;
+    public static final int REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +54,10 @@ public class NewMeasurementStep2 extends AppCompatActivity {
     }
 
     public void onResponseSuccess(Object responseBody) {
+        Intent intent = new Intent(NewMeasurementStep2.this, MeasurementListActivity.class);
+        setResult(REQUEST_CODE, intent);
+
+        finish();
 
     }
 
