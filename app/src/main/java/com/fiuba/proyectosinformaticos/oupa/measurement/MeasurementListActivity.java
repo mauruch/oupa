@@ -1,5 +1,6 @@
 package com.fiuba.proyectosinformaticos.oupa.measurement;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,6 +11,8 @@ import android.view.View;
 import com.fiuba.proyectosinformaticos.oupa.R;
 
 public class MeasurementListActivity extends AppCompatActivity {
+
+    public static final int REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +25,8 @@ public class MeasurementListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(MeasurementListActivity.this, NewMeasurementStep1.class);
+                startActivityForResult(intent, REQUEST_CODE);
             }
         });
     }

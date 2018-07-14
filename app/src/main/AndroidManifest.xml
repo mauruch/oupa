@@ -26,7 +26,7 @@
             android:name=".activities.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".pillbox.PillboxActivity"
             android:label="@string/title_activity_pillbox"
@@ -79,11 +79,19 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".pillbox.AlarmReceiver"></receiver>
+        <receiver android:name=".pillbox.AlarmReceiver" />
 
         <activity
             android:name=".measurement.MeasurementListActivity"
             android:label="@string/title_activity_measurement_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".measurement.NewMeasurementStep1"
+            android:label="@string/title_activity_new_measurement_step1"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".measurement.NewMeasurementStep2"
+            android:label="@string/title_activity_new_measurement_step2"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
