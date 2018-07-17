@@ -1,34 +1,28 @@
 package com.fiuba.proyectosinformaticos.oupa.pillbox;
 
-import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fiuba.proyectosinformaticos.oupa.R;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.model.OUPADateFormat;
-import com.fiuba.proyectosinformaticos.oupa.pillbox.model.ParcelablePill;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.model.Pill;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillClient;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillResponse;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillService;
 
-import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import static android.content.Intent.FLAG_ACTIVITY_FORWARD_RESULT;
 
 public class NewPillStep4 extends AppCompatActivity implements PillClient {
 
@@ -115,4 +109,6 @@ public class NewPillStep4 extends AppCompatActivity implements PillClient {
         finish();
 
     }
+
+
 }

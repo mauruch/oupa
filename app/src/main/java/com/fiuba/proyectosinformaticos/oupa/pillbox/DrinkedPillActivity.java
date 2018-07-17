@@ -11,7 +11,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.fiuba.proyectosinformaticos.oupa.R;
-import com.fiuba.proyectosinformaticos.oupa.pillbox.model.ParcelablePill;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.model.Pill;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillService;
 

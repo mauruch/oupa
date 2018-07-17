@@ -240,4 +240,10 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    @Override
+    protected void onResume() {
+        setUpPillsNotification();
+        super.onResume();
+    }
 }

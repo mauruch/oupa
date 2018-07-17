@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.fiuba.proyectosinformaticos.oupa.activities.MainActivity;
 
-import com.fiuba.proyectosinformaticos.oupa.pillbox.model.ParcelablePill;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.model.Pill;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillClient;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillResponse;
@@ -22,11 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Random;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class PillsNotification implements PillClient {
 
@@ -62,7 +57,7 @@ public class PillsNotification implements PillClient {
 
             try {
 
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
                 Date parsedDate = dateFormat.parse(pillResponse.time);
                 pill.date = parsedDate;
 
