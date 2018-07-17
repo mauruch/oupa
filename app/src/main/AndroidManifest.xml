@@ -32,6 +32,7 @@
         <activity
             android:name=".pillbox.PillboxActivity"
             android:label="@string/title_activity_pillbox"
+            android:parentActivityName=".activities.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
