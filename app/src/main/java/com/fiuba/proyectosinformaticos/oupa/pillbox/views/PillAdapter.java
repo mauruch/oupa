@@ -48,7 +48,26 @@ public class PillAdapter extends ArrayAdapter<Pill> {
         hourTextView.setText(pill.hourString());
         nameTextView.setText(pill.name);
 
-        if(pill.shouldBeDrinked() && pill.drinked){
+        if(pill.drinked){
+            convertView.setBackgroundColor(ContextCompat.getColor(super.getContext(),R.color.p_takenBg));
+            hourTextView.setTextColor(ContextCompat.getColor(super.getContext(),R.color.p_takenText));
+            nameTextView.setTextColor(ContextCompat.getColor(super.getContext(),R.color.p_takenText));
+            imageView.setImageResource(R.drawable.pill_ok);
+            imageView.setVisibility(View.VISIBLE);
+        }else if(pill.shouldBeDrinked()){
+            convertView.setBackgroundColor(ContextCompat.getColor(super.getContext(),R.color.p_notTakenBg));
+            hourTextView.setTextColor(ContextCompat.getColor(super.getContext(),R.color.p_notTakenText));
+            nameTextView.setTextColor(ContextCompat.getColor(super.getContext(),R.color.p_notTakenText));
+            imageView.setImageResource(R.drawable.pill_nok);
+            imageView.setVisibility(View.INVISIBLE);
+        }else{
+            convertView.setBackgroundColor(ContextCompat.getColor(super.getContext(),R.color.p_futureBg));
+            hourTextView.setTextColor(ContextCompat.getColor(super.getContext(),R.color.p_futureText));
+            nameTextView.setTextColor(ContextCompat.getColor(super.getContext(),R.color.p_futureText));
+            imageView.setVisibility(View.INVISIBLE);
+        }
+
+        /*if(pill.shouldBeDrinked() && pill.drinked){
             convertView.setBackgroundColor(ContextCompat.getColor(super.getContext(),R.color.p_takenBg));
             hourTextView.setTextColor(ContextCompat.getColor(super.getContext(),R.color.p_takenText));
             nameTextView.setTextColor(ContextCompat.getColor(super.getContext(),R.color.p_takenText));
@@ -65,7 +84,7 @@ public class PillAdapter extends ArrayAdapter<Pill> {
             hourTextView.setTextColor(ContextCompat.getColor(super.getContext(),R.color.p_futureText));
             nameTextView.setTextColor(ContextCompat.getColor(super.getContext(),R.color.p_futureText));
             imageView.setVisibility(View.INVISIBLE);
-        }
+        }*/
 
         // Return the completed view to render on screen
         return convertView;

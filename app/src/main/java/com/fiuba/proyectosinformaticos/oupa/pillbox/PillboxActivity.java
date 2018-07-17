@@ -102,6 +102,7 @@ public class PillboxActivity extends AppCompatActivity implements PillClient {
             }else if(requestCode == REQUEST_CODE && resultCode == RESULT_CODE_ADDED_PILL){
                 ProgressBar loadingView = (ProgressBar) findViewById(R.id.loading);
                 loadingView.setVisibility(View.VISIBLE);
+                pillsArray = new ArrayList<Pill>();
                 pillService.getPillsForToday(this);
             }
         } catch (Exception ex) {
@@ -127,7 +128,7 @@ public class PillboxActivity extends AppCompatActivity implements PillClient {
             pill.id = pillResponse.id;
 
             try {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
                 Date parsedDate = dateFormat.parse(pillResponse.time);
                 pill.date = parsedDate;
             } catch (Exception e) { //this generic but you can control another types of exception

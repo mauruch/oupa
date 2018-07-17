@@ -14,7 +14,6 @@ import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
 import com.fiuba.proyectosinformaticos.oupa.R;
-import com.fiuba.proyectosinformaticos.oupa.pillbox.model.ParcelablePill;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.model.Pill;
 
 import java.util.Date;
