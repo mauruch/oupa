@@ -11,6 +11,8 @@
 
     <ListView
         android:id="@+id/list_of_contacts"
+        android:stackFromBottom="false"
+        android:transcriptMode="alwaysScroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/btn_contact"

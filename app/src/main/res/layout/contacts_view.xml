@@ -7,13 +7,9 @@
 
     <TextView
         android:id="@+id/contactName"
-        android:layout_width="239dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Nombre place"
+        android:layout_width="210dp"
+        android:layout_height="140dp"
+        android:gravity="center"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="30sp"
@@ -24,10 +20,10 @@
 
     <ImageView
         android:id="@+id/contactImage"
-        android:layout_width="300px"
+        android:layout_width="140dp"
         android:layout_height="140dp"
-
-        android:src="@drawable/contact3"
+        android:scaleType="centerCrop"
+        android:src="@drawable/contact1"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
