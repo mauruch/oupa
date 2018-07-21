@@ -24,6 +24,7 @@ import android.widget.TextView;
 import com.fiuba.proyectosinformaticos.oupa.Flashlight;
 import com.fiuba.proyectosinformaticos.oupa.R;
 import com.fiuba.proyectosinformaticos.oupa.UserSessionManager;
+import com.fiuba.proyectosinformaticos.oupa.contacts.ContactActivity;
 import com.fiuba.proyectosinformaticos.oupa.measurement.MeasurementListActivity;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.AlarmReceiver;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.PillboxActivity;
@@ -142,7 +143,7 @@ public class MainActivity extends AppCompatActivity
         phoneLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent phoneActivity = new Intent(getApplicationContext(), PhoneActivity.class);
+                Intent phoneActivity = new Intent(getApplicationContext(), ContactActivity.class);
                 startActivity(phoneActivity);
             }
         });

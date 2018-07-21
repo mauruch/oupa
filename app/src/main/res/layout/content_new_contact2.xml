@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.PhoneActivity"
-    >
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".contacts.NewContact2"
+    tools:showIn="@layout/activity_new_contact2">
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="10">
+        android:weightSum="7">
 
         <TextView
             android:id="@+id/titleText"
@@ -20,13 +22,13 @@
             android:gravity="center"
             android:layout_weight="1"
             android:textSize="35sp"
-            android:text="Agenda"/>
+            android:text="Elegir foto"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="1dp"
-            android:layout_weight="3"
+            android:layout_weight="2"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -48,7 +50,6 @@
                     android:src="@drawable/contact1" />
 
 
-
             </LinearLayout>
 
             <LinearLayout
@@ -64,9 +65,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_weight="1"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
-                    android:layout_weight="1"
                     android:src="@drawable/contact2" />
 
 
@@ -78,7 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="1dp"
-            android:layout_weight="3"
+            android:layout_weight="2"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -94,9 +95,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_weight="1"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
-                    android:layout_weight="1"
                     android:src="@drawable/contact3" />
 
 
@@ -115,9 +116,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_weight="1"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
-                    android:layout_weight="1"
                     android:src="@drawable/contact4" />
 
 
@@ -129,7 +130,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="1dp"
-            android:layout_weight="3"
+            android:layout_weight="2"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -145,10 +146,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_weight="1"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
-                    android:layout_weight="1"
-                    android:src="@drawable/contact6" />
+                    android:src="@drawable/contact5" />
 
 
             </LinearLayout>
@@ -169,7 +170,7 @@
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/contact5" />
+                    android:src="@drawable/contact6" />
 
 
             </LinearLayout>
@@ -177,5 +178,6 @@
         </LinearLayout>
 
     </LinearLayout>
+
 
 </android.support.constraint.ConstraintLayout>

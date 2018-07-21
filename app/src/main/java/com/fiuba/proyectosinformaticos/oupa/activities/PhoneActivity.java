@@ -42,6 +42,8 @@ public class PhoneActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
+
+
         setContentView(R.layout.activity_phone);
 
         titleText = findViewById(R.id.titleText);

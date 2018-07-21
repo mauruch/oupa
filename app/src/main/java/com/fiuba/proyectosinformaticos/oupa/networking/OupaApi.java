@@ -1,11 +1,11 @@
 package com.fiuba.proyectosinformaticos.oupa.networking;
 
-import com.fiuba.proyectosinformaticos.oupa.measurement.model.Measurement;
+import com.fiuba.proyectosinformaticos.oupa.contacts.services.ContactResponse;
+import com.fiuba.proyectosinformaticos.oupa.contacts.services.ContactSerialized;
 import com.fiuba.proyectosinformaticos.oupa.measurement.services.MeasurementSerialized;
 import com.fiuba.proyectosinformaticos.oupa.model.UserLogged;
 import com.fiuba.proyectosinformaticos.oupa.model.UserSession;
 import com.fiuba.proyectosinformaticos.oupa.model.request.UserSessionRequest;
-import com.fiuba.proyectosinformaticos.oupa.pillbox.model.Pill;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillResponse;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillSerialized;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.services.PillTakenSerialized;
@@ -40,9 +40,16 @@ public interface OupaApi {
     @GET("/users/logged_in")
     Call<UserLogged> getUserLogged(@Header("Authorization") String accessToken);
 
+    @POST("/contacts")
+    Call<ContactResponse> createContact(@Header("Authorization") String accessToken, @Header("Content-Type") String s, @Body ContactSerialized contactSerialized);
+
+    @GET("/contacts")
+    Call<ArrayList<ContactResponse>> getContacts(@Header("Authorization") String accessToken);
+
     @POST("/measurements")
     Call<MeasurementSerialized> createMeasurement(@Header("Authorization") String accessToken, @Header("Content-Type") String content_type, @Body MeasurementSerialized pillSerialized);
 
     @GET("/measurements")
     Call<ArrayList<MeasurementSerialized.Measurement>> getMeasurements(@Header("Authorization") String accessToken);
+
 }
