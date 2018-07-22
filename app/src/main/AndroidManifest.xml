@@ -16,13 +16,12 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
-
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/oupa"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:name="com.fiuba.proyectosinformaticos.oupa.App"
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.MainActivity"
@@ -62,7 +61,6 @@
         <activity android:name=".contacts.ContactActivity" />
         <activity android:name=".contacts.NewContact2" />
         <activity android:name=".contacts.NewContact4" />
-
         <activity
             android:name=".contacts.NewContact"
             android:label="@string/title_activity_new_contact"
@@ -104,6 +102,14 @@
         <activity
             android:name=".measurement.NewMeasurementStep2"
             android:label="@string/title_activity_new_measurement_step2"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".measurement.heartRate.HeartRateMonitor"
+            android:label="@string/title_activity_new_measurement_heart_rate"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".measurement.heartRate.HeartRateSendMeasureActivity"
+            android:label="@string/title_activity_heart_rate_send_measure"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.fiuba.proyectosinformaticos.oupa.R;
+import com.fiuba.proyectosinformaticos.oupa.measurement.heartRate.HeartRateMonitor;
 import com.fiuba.proyectosinformaticos.oupa.measurement.model.Measurement;
 
 import static android.content.Intent.FLAG_ACTIVITY_FORWARD_RESULT;
@@ -46,12 +47,26 @@ public class NewMeasurementStep1 extends AppCompatActivity {
             }
         });
 
-        LinearLayout cameraLayout = findViewById(R.id.preasure_layout);
-        cameraLayout.setOnClickListener(new View.OnClickListener() {
+        LinearLayout preasureLayout = findViewById(R.id.preasure_layout);
+        preasureLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 measurement.measurement_type = "preasure";
                 startStep2();
+            }
+        });
+
+        LinearLayout heartRateLayout = findViewById(R.id.heart_rate_layout);
+        heartRateLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                measurement.measurement_type = "pulsations";
+                Intent intent = new Intent(NewMeasurementStep1.this, HeartRateMonitor.class);
+                intent.addFlags(FLAG_ACTIVITY_FORWARD_RESULT);
+                intent.putExtra("measurement", measurement);
+                startActivity(intent);
+                finish();
+
             }
         });
 
