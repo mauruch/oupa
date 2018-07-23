@@ -58,6 +58,7 @@
 
     <string name="title_heart_rate">Coloque el dedo sobre la cámara</string>
     <string name="title_activity_heart_rate_send_measure">HeartRateSendMeasureActivity</string>
+    <string name="title_activity_voice">VoiceActivity</string>
 
 
 </resources>

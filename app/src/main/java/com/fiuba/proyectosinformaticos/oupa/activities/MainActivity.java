@@ -2,9 +2,12 @@ package com.fiuba.proyectosinformaticos.oupa.activities;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.text.format.DateFormat;
@@ -20,6 +23,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fiuba.proyectosinformaticos.oupa.Flashlight;
 import com.fiuba.proyectosinformaticos.oupa.R;
@@ -32,7 +36,9 @@ import com.fiuba.proyectosinformaticos.oupa.pillbox.PillsNotification;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -176,6 +182,37 @@ public class MainActivity extends AppCompatActivity
                 MainActivity.this.startActivity(measurementIntent);
             }
         });
+
+        LinearLayout voiceLayout = findViewById(R.id.voice_layout);
+        voiceLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              /*  Intent voiceIntent = new Intent(MainActivity.this, VoiceActivity.class);
+                 MainActivity.this.startActivity(voiceIntent);*/
+
+
+                Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "ES");
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ES");
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, "ES");
+                intent.putExtra(RecognizerIntent.EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE,"ES");
+                intent.putExtra(RecognizerIntent.EXTRA_PROMPT,"Hola ¿en qué puedo ayudarte?");
+                try {
+
+                    startActivityForResult(intent, 1);
+                } catch (ActivityNotFoundException a) {
+                    Toast.makeText(getApplicationContext(),
+                            "Opps! Your device doesn’t support Speech to Text",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.voice_response);
+        mp.start();
     }
 
 

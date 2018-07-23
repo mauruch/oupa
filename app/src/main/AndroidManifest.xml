@@ -8,6 +8,8 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
 
     <uses-feature android:name="android.hardware.camera" />
 
@@ -110,7 +112,8 @@
         <activity
             android:name=".measurement.heartRate.HeartRateSendMeasureActivity"
             android:label="@string/title_activity_heart_rate_send_measure"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>
