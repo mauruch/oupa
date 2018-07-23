@@ -3,10 +3,10 @@ package com.fiuba.proyectosinformaticos.oupa.pillbox.services;
 import android.content.Context;
 import android.util.Log;
 
-import com.fiuba.proyectosinformaticos.oupa.App;
 import com.fiuba.proyectosinformaticos.oupa.UserSessionManager;
 import com.fiuba.proyectosinformaticos.oupa.networking.ApiClient;
 import com.fiuba.proyectosinformaticos.oupa.networking.OupaApi;
+import com.fiuba.proyectosinformaticos.oupa.pillbox.DrinkedPillActivity;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.NewPillStep4;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.model.OUPADateFormat;
 import com.fiuba.proyectosinformaticos.oupa.pillbox.model.Pill;
@@ -96,7 +96,7 @@ public class PillService {
         });
     }
 
-    public void updatePillDrinked(Context applicationContext, final Pill pill){
+    public void updatePillDrinked(Context applicationContext, final Pill pill, final DrinkedPillActivity drinkedPillActivity){
         PillTakenSerialized pillTakenSerialized = new PillTakenSerialized();
         pillTakenSerialized.personal_medicine_reminder = new PillTakenSerialized.Personal_medicine_reminder();
         pillTakenSerialized.personal_medicine_reminder.taken = pill.drinked;
@@ -108,14 +108,17 @@ public class PillService {
             public void onResponse(Call<PillResponse> call, Response<PillResponse> response) {
                 if (response.code() > 199 && response.code() < 300) {
                     Log.i("PILLSERVICE", "PILL " +pill.id+" UPDATED!!!");
+                    drinkedPillActivity.onResponseSuccess();
                 } else {
                     Log.e("PILLSERVICE", response.body().toString());
+                    drinkedPillActivity.onResponseError();
                 }
             }
 
             @Override
             public void onFailure(Call<PillResponse> call, Throwable t) {
                 Log.e("PILLSERVICE", t.getMessage());
+                drinkedPillActivity.onResponseError();
             }
         });
     }

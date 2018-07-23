@@ -95,7 +95,6 @@ public class PillboxActivity extends AppCompatActivity implements PillClient {
 
             if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
                 Pill pill = (Pill) data.getSerializableExtra("pill");
-                pillService.updatePillDrinked(getApplicationContext(), pill);
                 pillsArray.set(pillPosition, pill);
                 displayPills();
 
