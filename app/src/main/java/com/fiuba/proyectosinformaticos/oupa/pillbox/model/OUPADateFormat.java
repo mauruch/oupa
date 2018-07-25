@@ -15,4 +15,9 @@ public class OUPADateFormat {
     public String timeFormatForServer() {
         return "HH:mm";
     }
+
+    public String measureDateFormatForServer() {
+        return "yyyy-MM-dd'T'HH:mm:ss.SSS";
+    }
+
 }

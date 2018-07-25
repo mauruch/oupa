@@ -66,8 +66,8 @@ public class MainActivity extends AppCompatActivity
 
         //set hour
         SimpleDateFormat formatDate = new SimpleDateFormat("HH:mm");
-        TextView hour = findViewById(R.id.hour);
-        hour.setText(formatDate.format(new Date()));
+//        TextView hour = findViewById(R.id.hour);
+//        hour.setText(formatDate.format(new Date()));
 
         //set date
         TextView date = findViewById(R.id.date);

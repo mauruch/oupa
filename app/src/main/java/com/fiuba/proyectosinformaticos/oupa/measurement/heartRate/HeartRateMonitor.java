@@ -336,11 +336,11 @@ public class HeartRateMonitor extends Activity {
     	new CountDownTimer(20000, 1000) {
 
     	     public void onTick(long millisUntilFinished) {
-    	    	 mTxtVwStopWatch.setText("seconds remaining: " + (millisUntilFinished) / 1000);
+    	    	 mTxtVwStopWatch.setText("" + (millisUntilFinished) / 1000);
     	     }
 
     	     public void onFinish() {
-    	    	 mTxtVwStopWatch.setText("done!");
+    	    	 mTxtVwStopWatch.setText("Listo!");
     	     }
     	  }.start();
     }
@@ -348,26 +348,6 @@ public class HeartRateMonitor extends Activity {
 
     
     private static void showReadingCompleteDialog(){
-
-
-    	/*AlertDialog.Builder builder = new AlertDialog.Builder(parentReference);
-    	builder.setTitle("PubNub-HeartRate");
-    	builder.setMessage("Reading taken Succesfully at- "+beatsPerMinuteValue+" beats per minute.")
-    	   .setCancelable(false)
-    	   .setPositiveButton("Exit", new DialogInterface.OnClickListener() {
-    	       public void onClick(DialogInterface dialog, int id) {
-    	    	 ( (Activity) parentReference).finish();
-    	       }
-    	   })
-    	   .setNegativeButton("Take Another", new DialogInterface.OnClickListener() {
-    	       public void onClick(DialogInterface dialog, int id) {
-    	    	   text.setText("---");
-    	    	   prepareCountDownTimer();
-    	            dialog.cancel();
-    	       }
-    	   });
-    	AlertDialog alert = builder.create();
-    	alert.show();*/
 
         ((HeartRateMonitor)parentReference).measureGot();
 
