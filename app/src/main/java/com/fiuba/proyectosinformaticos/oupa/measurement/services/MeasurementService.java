@@ -38,11 +38,8 @@ public class MeasurementService {
         measurementSerialized.measurement.value = measurement.value;
 
         OUPADateFormat customDateFormat = new OUPADateFormat();
-        String myFormat = customDateFormat.dateFormatForServer();
+        String myFormat = customDateFormat.measureDateFormatForServer();
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat);
-
-        String hourFormat = customDateFormat.timeFormatForServer();
-        SimpleDateFormat hourdf = new SimpleDateFormat(hourFormat);
 
         measurementSerialized.measurement.date = sdf.format(measurement.date);
 
