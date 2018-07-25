@@ -90,7 +90,7 @@ public class ContactActivity extends AppCompatActivity implements ContactClient 
             }
         });
 
-        if(!this.contactArray.isEmpty()){
+        if (!this.contactArray.isEmpty()) {
             contactList.setSelection(0);
         }
     }
@@ -119,6 +119,7 @@ public class ContactActivity extends AppCompatActivity implements ContactClient 
 
     @Override
     public void onResponseSuccess(Object responseBody) {
+        contactArray.clear();
         ArrayList<ContactResponse> contactResponseArrayList = (ArrayList<ContactResponse>) responseBody;
 
         for (ContactResponse contactResponse : contactResponseArrayList) {
@@ -146,12 +147,9 @@ public class ContactActivity extends AppCompatActivity implements ContactClient 
 
     }
 
-    public void callPhoneNumber(String phoneNumber)
-    {
-        try
-        {
-            if(Build.VERSION.SDK_INT > 22)
-            {
+    public void callPhoneNumber(String phoneNumber) {
+        try {
+            if (Build.VERSION.SDK_INT > 22) {
                 if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling
 
@@ -164,15 +162,12 @@ public class ContactActivity extends AppCompatActivity implements ContactClient 
                 callIntent.setData(Uri.parse("tel:" + phoneNumber));
                 startActivity(callIntent);
 
-            }
-            else {
+            } else {
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
                 callIntent.setData(Uri.parse("tel:" + phoneNumber));
                 startActivity(callIntent);
             }
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
