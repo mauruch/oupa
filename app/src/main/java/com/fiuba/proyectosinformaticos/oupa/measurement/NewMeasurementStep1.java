@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 
 import com.fiuba.proyectosinformaticos.oupa.R;
 import com.fiuba.proyectosinformaticos.oupa.measurement.heartRate.HeartRateMonitor;
+import com.fiuba.proyectosinformaticos.oupa.measurement.heartRate.HeartRateStartActivity;
 import com.fiuba.proyectosinformaticos.oupa.measurement.model.Measurement;
 
 import static android.content.Intent.FLAG_ACTIVITY_FORWARD_RESULT;
@@ -61,7 +62,7 @@ public class NewMeasurementStep1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 measurement.measurement_type = "pulsations";
-                Intent intent = new Intent(NewMeasurementStep1.this, HeartRateMonitor.class);
+                Intent intent = new Intent(NewMeasurementStep1.this, HeartRateStartActivity.class);
                 intent.addFlags(FLAG_ACTIVITY_FORWARD_RESULT);
                 intent.putExtra("measurement", measurement);
                 startActivity(intent);

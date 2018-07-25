@@ -10,7 +10,6 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
-
     <uses-feature android:name="android.hardware.camera" />
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
@@ -113,7 +112,10 @@
             android:name=".measurement.heartRate.HeartRateSendMeasureActivity"
             android:label="@string/title_activity_heart_rate_send_measure"
             android:theme="@style/AppTheme.NoActionBar" />
-
+        <activity android:name=".measurement.heartRate.HeartRateStartActivity"
+            android:label="@string/title_activity_heart_rate_start"
+            android:theme="@style/AppTheme.NoActionBar" />
+            />
     </application>
 
 </manifest>

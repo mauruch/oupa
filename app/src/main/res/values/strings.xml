@@ -55,10 +55,13 @@
     <string name="title_measurement_step2">Resultado obtenido:</string>
 
     <string name="measurement_list_title">Mediciones</string>
+    <string name="text_comenzar_medicion">Coloque el dedo sobre la cámara, tapando el flash y presione el botón Comenzar Medición</string>
+    <string name="btn_comenzar_medicion">Comenzar Medición</string>
 
-    <string name="title_heart_rate">Coloque el dedo sobre la cámara</string>
+    <string name="title_heart_rate">No quite el dedo de la cámara</string>
     <string name="title_activity_heart_rate_send_measure">HeartRateSendMeasureActivity</string>
     <string name="title_activity_voice">VoiceActivity</string>
+    <string name="title_activity_heart_rate_start">HeartRateStartActivity</string>
 
 
 </resources>
