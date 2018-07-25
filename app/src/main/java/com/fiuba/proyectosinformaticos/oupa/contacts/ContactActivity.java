@@ -89,6 +89,10 @@ public class ContactActivity extends AppCompatActivity implements ContactClient 
                 callPhoneNumber(contact.phoneNumber);
             }
         });
+
+        if(!this.contactArray.isEmpty()){
+            contactList.setSelection(0);
+        }
     }
 
 
